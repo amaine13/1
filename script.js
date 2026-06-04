@@ -20,6 +20,7 @@
     toggle.classList.remove('is-open');
     mobileNav.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
+    mobileNav.setAttribute('hidden', '');
     document.body.style.overflow = '';
   }
 
@@ -27,6 +28,7 @@
     if (!toggle || !mobileNav) return;
     toggle.classList.add('is-open');
     mobileNav.classList.add('is-open');
+    mobileNav.removeAttribute('hidden');
     toggle.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   }

@@ -293,15 +293,18 @@ p:last-child {
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 1001;
   background: var(--cream);
   padding: 2rem 1.5rem;
   transform: translateX(100%);
   transition: transform var(--transition);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .nav-mobile.is-open {
   transform: translateX(0);
+  box-shadow: var(--shadow-lg);
 }
 
 .nav-mobile ul {
