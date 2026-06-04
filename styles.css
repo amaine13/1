@@ -588,20 +588,23 @@ p:last-child {
    ========================================================================== */
 
 .preview-block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  display: flex;
   align-items: center;
+  gap: 80px;
 }
 
-.preview-block--reverse .preview-image {
-  order: -1;
+.preview-block--reverse {
+  flex-direction: row-reverse;
+}
+
+.preview-content {
+  flex: 1;
 }
 
 .preview-image {
   position: relative;
-  flex: 0 0 420px;
-  max-width: 420px;
+  flex: 0 0 45%;
+  max-width: 45%;
 }
 
 .preview-image img {
@@ -610,7 +613,6 @@ p:last-child {
   object-fit: contain;
   display: block;
   border-radius: 4px;
-  box-shadow: var(--shadow-md);
 }
 
 .preview-content h2 {
@@ -703,6 +705,14 @@ p:last-child {
   padding: 2.5rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+}
+
+.form-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .form-group {
@@ -833,7 +843,6 @@ p:last-child {
 
 @media (max-width: 900px) {
   .hero-grid,
-  .preview-block,
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -844,15 +853,6 @@ p:last-child {
 
   .book-cover-wrap {
     max-width: 280px;
-  }
-
-  .preview-block--reverse .preview-image {
-    order: 0;
-  }
-
-  .preview-image {
-    flex: none;
-    max-width: 100%;
   }
 
   .preview-image img {
@@ -889,6 +889,20 @@ p:last-child {
 
   .contact-form {
     padding: 1.75rem;
+  }
+
+  .preview-block {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .preview-block--reverse {
+    flex-direction: column;
+  }
+
+  .preview-image {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
 

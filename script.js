@@ -74,20 +74,42 @@
     });
   }
 
-  /* Contact form — prevent default, show acknowledgment */
-  var contactForm = document.querySelector('.contact-form form');
+  /* Contact form — send to heyjude201@aol.com via FormSubmit */
+  var contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      var honey = contactForm.querySelector('.form-honey');
+      if (honey && honey.value) return;
+
       var btn = contactForm.querySelector('button[type="submit"]');
       var originalText = btn.textContent;
-      btn.textContent = 'Message Sent';
       btn.disabled = true;
-      setTimeout(function () {
-        btn.textContent = originalText;
-        btn.disabled = false;
-        contactForm.reset();
-      }, 3000);
+      btn.textContent = 'Sending...';
+
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            btn.textContent = 'Message Sent';
+            contactForm.reset();
+          } else {
+            btn.textContent = 'Could not send — please email directly';
+          }
+        })
+        .catch(function () {
+          btn.textContent = 'Could not send — please email directly';
+        })
+        .finally(function () {
+          setTimeout(function () {
+            btn.textContent = originalText;
+            btn.disabled = false;
+          }, 4000);
+        });
     });
   }
 })();
