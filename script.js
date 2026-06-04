@@ -1,0 +1,93 @@
+(function () {
+  'use strict';
+
+  /* Header scroll state */
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var onScroll = function () {
+      header.classList.toggle('is-scrolled', window.scrollY > 20);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  /* Mobile menu */
+  var toggle = document.querySelector('.menu-toggle');
+  var mobileNav = document.querySelector('.nav-mobile');
+
+  function closeMenu() {
+    if (!toggle || !mobileNav) return;
+    toggle.classList.remove('is-open');
+    mobileNav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  function openMenu() {
+    if (!toggle || !mobileNav) return;
+    toggle.classList.add('is-open');
+    mobileNav.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  if (toggle && mobileNav) {
+    toggle.addEventListener('click', function () {
+      if (mobileNav.classList.contains('is-open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  }
+
+  /* Scroll reveal */
+  var revealElements = document.querySelectorAll('.reveal');
+
+  if (revealElements.length && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    revealElements.forEach(function (el) {
+      observer.observe(el);
+    });
+  } else {
+    revealElements.forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  }
+
+  /* Contact form — prevent default, show acknowledgment */
+  var contactForm = document.querySelector('.contact-form form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = contactForm.querySelector('button[type="submit"]');
+      var originalText = btn.textContent;
+      btn.textContent = 'Message Sent';
+      btn.disabled = true;
+      setTimeout(function () {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        contactForm.reset();
+      }, 3000);
+    });
+  }
+})();
