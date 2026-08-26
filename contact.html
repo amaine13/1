@@ -76,6 +76,8 @@
           <form id="contact-form" action="https://formsubmit.co/ajax/heyjude201@aol.com" method="POST">
             <input type="hidden" name="_subject" value="New message — Who's Driving Your Bus website">
             <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_blacklist" value="spammy pattern, bid for, SEO">
             <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="form-group">
               <label for="name">Name</label>
@@ -101,6 +103,7 @@
               <textarea id="message" name="message" required placeholder="Tell Judy a little about what brings you here — what you are looking for, which passenger you recognize most, or simply what made you reach out."></textarea>
             </div>
             <button type="submit" class="btn btn--primary">Send Message</button>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
           </form>
         </div>
       </div>

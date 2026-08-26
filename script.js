@@ -86,9 +86,11 @@
       if (honey && honey.value) return;
 
       var btn = contactForm.querySelector('button[type="submit"]');
+      var statusEl = document.getElementById('form-status');
       var originalText = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Sending...';
+      if (statusEl) statusEl.textContent = '';
 
       fetch(contactForm.action, {
         method: 'POST',
@@ -96,21 +98,57 @@
         headers: { Accept: 'application/json' }
       })
         .then(function (response) {
-          if (response.ok) {
+          return response.json().then(function (data) {
+            return { ok: response.ok, data: data };
+          }).catch(function () {
+            return { ok: response.ok, data: null };
+          });
+        })
+        .then(function (result) {
+          var data = result.data || {};
+          var success = result.ok && String(data.success) !== 'false';
+          var message = (data.message || '').toLowerCase();
+          var needsActivation =
+            message.indexOf('confirm') !== -1 ||
+            message.indexOf('activate') !== -1 ||
+            message.indexOf('activation') !== -1;
+
+          if (needsActivation) {
+            btn.textContent = 'Check Judy\'s email to activate';
+            if (statusEl) {
+              statusEl.textContent =
+                'FormSubmit sent an activation email to heyjude201@aol.com. Open that email (check Spam/Junk), click the confirmation link once, then try the form again.';
+            }
+            return;
+          }
+
+          if (success) {
             btn.textContent = 'Message Sent';
+            if (statusEl) {
+              statusEl.textContent = 'Thank you — your message was sent. Judy will get back to you soon.';
+            }
             contactForm.reset();
-          } else {
-            btn.textContent = 'Could not send — please email directly';
+            return;
+          }
+
+          btn.textContent = 'Could not send — please email directly';
+          if (statusEl) {
+            statusEl.textContent =
+              'The form could not deliver your message. Please email heyjude201@aol.com directly.';
           }
         })
         .catch(function () {
           btn.textContent = 'Could not send — please email directly';
+          if (statusEl) {
+            statusEl.textContent =
+              'The form could not deliver your message. Please email heyjude201@aol.com directly.';
+          }
         })
         .finally(function () {
           setTimeout(function () {
             btn.textContent = originalText;
             btn.disabled = false;
-          }, 4000);
+          }, 6000);
         });
     });
   }

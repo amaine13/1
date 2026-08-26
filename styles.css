@@ -777,6 +777,13 @@ p:last-child {
   resize: vertical;
 }
 
+.form-status {
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
 /* Footer
    ========================================================================== */
 
