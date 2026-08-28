@@ -76,7 +76,7 @@
     });
   }
 
-  /* Contact form — send to whoisdrivingyourbus@gmail.com via FormSubmit */
+  /* Contact form — send to heyjude201@gmail.com via FormSubmit */
   var contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
@@ -117,7 +117,7 @@
             btn.textContent = 'Check Judy\'s email to activate';
             if (statusEl) {
               statusEl.textContent =
-                'FormSubmit sent an activation email to whoisdrivingyourbus@gmail.com. Open that inbox (check Spam/Junk), click the confirmation link once, then try the form again.';
+                'FormSubmit sent an activation email to heyjude201@gmail.com. Open that inbox (check Spam/Junk), click the confirmation link once, then try the form again.';
             }
             return;
           }
@@ -134,14 +134,14 @@
           btn.textContent = 'Could not send — please email directly';
           if (statusEl) {
             statusEl.textContent =
-              'The form could not deliver your message. Please email whoisdrivingyourbus@gmail.com directly.';
+              'The form could not deliver your message. Please email heyjude201@gmail.com directly.';
           }
         })
         .catch(function () {
           btn.textContent = 'Could not send — please email directly';
           if (statusEl) {
             statusEl.textContent =
-              'The form could not deliver your message. Please email whoisdrivingyourbus@gmail.com directly.';
+              'The form could not deliver your message. Please email heyjude201@gmail.com directly.';
           }
         })
         .finally(function () {
