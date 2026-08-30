@@ -699,7 +699,7 @@ p:last-child {
 }
 
 .feature-card-photo--judy {
-  object-position: center 8%;
+  object-position: center top;
 }
 
 .feature-card:hover .feature-card-media img {
