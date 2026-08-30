@@ -9,8 +9,8 @@
  * Never put the service_role key in this file.
  */
 export const supabaseConfig = {
-  url: '',
-  anonKey: ''
+  url: 'https://fzpuuabczowjmywqdipw.supabase.co',
+  anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ6cHV1YWJjem93am15d3FkaXB3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgxMjIwMjgsImV4cCI6MjEwMzY5ODAyOH0._aPDE4W2z92Es-FzSXrFCAjve09ZOlcXGw5d9nankQg'
 };
 
 const PLACEHOLDERS = new Set([
