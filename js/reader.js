@@ -1,4 +1,4 @@
-import { isFirebaseConfigured, waitForAuthReady, getFirebase } from './auth.js';
+import { isAccountsConfigured, waitForAuthReady, getClient } from './auth.js';
 
 var CHAPTERS = [
   { id: 'intro', title: "There's Always Another Bus", label: 'Introduction' },
@@ -37,22 +37,19 @@ function renderTabs() {
 
 async function loadChapter(id) {
   if (cache[id]) return cache[id];
-  var firebase = getFirebase();
-  var storeMod = await import('https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js');
-  var snap = await storeMod.getDoc(storeMod.doc(firebase.db, 'chapters', id));
-  if (!snap.exists()) {
-    throw new Error('Chapter is not seeded yet.');
-  }
-  cache[id] = snap.data();
+  var supabase = getClient();
+  var result = await supabase.from('chapters').select('id,title,html').eq('id', id).maybeSingle();
+  if (result.error) throw result.error;
+  if (!result.data) throw new Error('Chapter is not seeded yet.');
+  cache[id] = result.data;
   return cache[id];
 }
 
 async function loadFeedback(uid) {
-  var firebase = getFirebase();
-  var storeMod = await import('https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js');
-  var snap = await storeMod.getDoc(storeMod.doc(firebase.db, 'readers', uid));
-  if (!snap.exists()) return {};
-  return (snap.data().feedback || {});
+  var supabase = getClient();
+  var result = await supabase.from('readers').select('feedback').eq('id', uid).maybeSingle();
+  if (result.error || !result.data) return {};
+  return result.data.feedback || {};
 }
 
 async function renderChapter() {
@@ -76,13 +73,13 @@ async function renderChapter() {
     }
     var state = await waitForAuthReady();
     if (state.user && feedback) {
-      var notes = await loadFeedback(state.user.uid);
+      var notes = await loadFeedback(state.user.id);
       feedback.value = notes[currentId] || '';
     }
   } catch (err) {
     if (body) {
       body.innerHTML =
-        '<p>This piece is not available yet. After Firebase is connected, run the seed script so the introduction and Chapters 1–3 can be read here.</p>';
+        '<p>This piece is not available yet. After accounts are connected, run the seed script so the introduction and Chapters 1–3 can be read here.</p>';
     }
   }
 }
@@ -103,15 +100,17 @@ async function saveFeedback(e) {
 
   btn.disabled = true;
   try {
-    var firebase = getFirebase();
-    var storeMod = await import('https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js');
-    var update = { feedbackUpdatedAt: storeMod.serverTimestamp() };
-    update['feedback.' + currentId] = (field && field.value) || '';
-    await storeMod.setDoc(
-      storeMod.doc(firebase.db, 'readers', state.user.uid),
-      update,
-      { merge: true }
-    );
+    var supabase = getClient();
+    var existing = await loadFeedback(state.user.id);
+    existing[currentId] = (field && field.value) || '';
+    var result = await supabase
+      .from('readers')
+      .update({
+        feedback: existing,
+        feedback_updated_at: new Date().toISOString()
+      })
+      .eq('id', state.user.id);
+    if (result.error) throw result.error;
     if (status) {
       status.textContent = 'Saved. Thank you.';
       status.classList.remove('is-error');
@@ -128,7 +127,7 @@ async function saveFeedback(e) {
 }
 
 waitForAuthReady().then(function (state) {
-  if (!isFirebaseConfigured() || !state.configured) {
+  if (!isAccountsConfigured() || !state.configured) {
     show('reader-pending', true);
     show('reader-locked', true);
     show('reader-live', false);

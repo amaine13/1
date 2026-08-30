@@ -1,7 +1,7 @@
 import {
-  isFirebaseConfigured,
+  isAccountsConfigured,
   waitForAuthReady,
-  getFirebase,
+  getClient,
   notifyJudyOfSignup
 } from './auth.js';
 
@@ -51,7 +51,7 @@ async function handleJoin(form) {
     return;
   }
 
-  if (!isFirebaseConfigured()) {
+  if (!isAccountsConfigured()) {
     showPending();
     setStatus(
       status,
@@ -67,24 +67,28 @@ async function handleJoin(form) {
   setStatus(status, '');
 
   try {
-    var state = await waitForAuthReady();
-    var firebase = getFirebase();
-    var authMod = await import('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js');
-    var storeMod = await import('https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js');
-    var cred = await authMod.createUserWithEmailAndPassword(firebase.auth, email, password);
+    await waitForAuthReady();
+    var supabase = getClient();
+    var signedUp = await supabase.auth.signUp({ email: email, password: password });
+    if (signedUp.error) throw signedUp.error;
+    var user = signedUp.data && signedUp.data.user;
+    if (!user) throw new Error('Account was created, but sign-in did not finish. Try signing in.');
+
     var consentAt = new Date().toISOString();
     var profile = {
-      firstName: firstName,
-      lastName: lastName,
+      id: user.id,
+      first_name: firstName,
+      last_name: lastName,
       name: firstName + ' ' + lastName,
       email: email,
       consent: true,
-      consentAt: consentAt,
-      createdAt: storeMod.serverTimestamp(),
+      consent_at: consentAt,
       source: 'early-reader',
       feedback: {}
     };
-    await storeMod.setDoc(storeMod.doc(firebase.db, 'readers', cred.user.uid), profile);
+    var saved = await supabase.from('readers').insert(profile);
+    if (saved.error) throw saved.error;
+
     await notifyJudyOfSignup({
       firstName: firstName,
       lastName: lastName,
@@ -95,8 +99,7 @@ async function handleJoin(form) {
     });
     window.location.href = nextPath();
   } catch (err) {
-    var message = friendlyAuthError(err);
-    setStatus(status, message, 'is-error');
+    setStatus(status, friendlyAuthError(err), 'is-error');
     btn.disabled = false;
     btn.textContent = original;
   }
@@ -113,7 +116,7 @@ async function handleLogin(form) {
     return;
   }
 
-  if (!isFirebaseConfigured()) {
+  if (!isAccountsConfigured()) {
     showPending();
     setStatus(status, 'Accounts are being connected. Sign-in is not live yet.', 'is-error');
     return;
@@ -126,9 +129,9 @@ async function handleLogin(form) {
 
   try {
     await waitForAuthReady();
-    var firebase = getFirebase();
-    var authMod = await import('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js');
-    await authMod.signInWithEmailAndPassword(firebase.auth, email, password);
+    var supabase = getClient();
+    var result = await supabase.auth.signInWithPassword({ email: email, password: password });
+    if (result.error) throw result.error;
     window.location.href = nextPath();
   } catch (err) {
     setStatus(status, friendlyAuthError(err), 'is-error');
@@ -142,7 +145,7 @@ async function handleReset() {
   var emailInput = document.getElementById('email');
   var email = emailInput && emailInput.value.trim();
 
-  if (!isFirebaseConfigured()) {
+  if (!isAccountsConfigured()) {
     showPending();
     setStatus(status, 'Accounts are being connected. Password reset is not live yet.', 'is-error');
     return;
@@ -154,9 +157,10 @@ async function handleReset() {
 
   try {
     await waitForAuthReady();
-    var firebase = getFirebase();
-    var authMod = await import('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js');
-    await authMod.sendPasswordResetEmail(firebase.auth, email);
+    var supabase = getClient();
+    var redirectTo = new URL('login.html', window.location.href).href;
+    var result = await supabase.auth.resetPasswordForEmail(email, { redirectTo: redirectTo });
+    if (result.error) throw result.error;
     setStatus(status, 'Check your email for a password reset link.', 'is-ok');
   } catch (err) {
     setStatus(status, friendlyAuthError(err), 'is-error');
@@ -164,14 +168,20 @@ async function handleReset() {
 }
 
 function friendlyAuthError(err) {
-  var code = (err && err.code) || '';
-  if (code === 'auth/email-already-in-use') return 'That email already has an account. Try signing in.';
-  if (code === 'auth/invalid-email') return 'Please enter a valid email address.';
-  if (code === 'auth/weak-password') return 'Please choose a stronger password (at least 8 characters).';
-  if (code === 'auth/invalid-credential' || code === 'auth/wrong-password' || code === 'auth/user-not-found') {
+  var message = ((err && (err.message || err.error_description)) || '').toLowerCase();
+  if (message.indexOf('already registered') !== -1 || message.indexOf('already been registered') !== -1) {
+    return 'That email already has an account. Try signing in.';
+  }
+  if (message.indexOf('invalid login') !== -1 || message.indexOf('invalid credentials') !== -1) {
     return 'Email or password is not right. Try again, or reset your password.';
   }
-  if (code === 'auth/too-many-requests') return 'Too many attempts. Please wait a moment and try again.';
+  if (message.indexOf('invalid email') !== -1) return 'Please enter a valid email address.';
+  if (message.indexOf('password') !== -1 && message.indexOf('least') !== -1) {
+    return 'Please choose a stronger password (at least 8 characters).';
+  }
+  if (message.indexOf('rate limit') !== -1 || message.indexOf('too many') !== -1) {
+    return 'Too many attempts. Please wait a moment and try again.';
+  }
   return (err && err.message) || 'Something went wrong. Please try again.';
 }
 

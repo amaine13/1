@@ -1,16 +1,15 @@
-import { firebaseConfig, isFirebaseConfigured } from './firebase-config.js';
+import { supabaseConfig, isAccountsConfigured } from './supabase-config.js';
 
 const SIGNUP_NOTIFY_URL = 'https://formsubmit.co/ajax/heyjude201@gmail.com';
+const SDK_URL = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-let app;
-let auth;
-let db;
+let client;
 let ready;
 
-export { isFirebaseConfigured };
+export { isAccountsConfigured };
 
-export function getFirebase() {
-  return { app, auth, db };
+export function getClient() {
+  return client;
 }
 
 export function waitForAuthReady() {
@@ -28,13 +27,13 @@ function setShown(root, signedIn) {
   });
 }
 
-function wireSignOut(root, authInstance) {
-  if (!root || !authInstance) return;
+function wireSignOut(root) {
+  if (!root || !client) return;
   root.querySelectorAll('[data-signout]').forEach(function (btn) {
     if (btn.dataset.bound === '1') return;
     btn.dataset.bound = '1';
     btn.addEventListener('click', function () {
-      authInstance.signOut().then(function () {
+      client.auth.signOut().then(function () {
         window.location.href = 'index.html';
       });
     });
@@ -45,20 +44,14 @@ function paintHeader(user) {
   var signedIn = Boolean(user);
   document.querySelectorAll('[data-auth-slot]').forEach(function (slot) {
     setShown(slot, signedIn);
-    if (auth) wireSignOut(slot, auth);
+    if (client) wireSignOut(slot);
   });
 }
 
 async function loadSdk() {
-  const [{ initializeApp }, authMod, firestoreMod] = await Promise.all([
-    import('https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js'),
-    import('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js'),
-    import('https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js')
-  ]);
-  app = initializeApp(firebaseConfig);
-  auth = authMod.getAuth(app);
-  db = firestoreMod.getFirestore(app);
-  return { authMod, firestoreMod };
+  const { createClient } = await import(SDK_URL);
+  client = createClient(supabaseConfig.url, supabaseConfig.anonKey);
+  return client;
 }
 
 export async function notifyJudyOfSignup(profile) {
@@ -85,21 +78,24 @@ export async function notifyJudyOfSignup(profile) {
 }
 
 ready = (async function init() {
-  if (!isFirebaseConfigured()) {
+  if (!isAccountsConfigured()) {
     paintHeader(null);
     return { configured: false, user: null };
   }
 
   try {
-    const { authMod } = await loadSdk();
-    return await new Promise(function (resolve) {
-      authMod.onAuthStateChanged(auth, function (user) {
-        paintHeader(user);
-        resolve({ configured: true, user: user, auth: auth, db: db, authMod: authMod });
-      });
+    await loadSdk();
+    var first = await client.auth.getSession();
+    var user = first.data && first.data.session ? first.data.session.user : null;
+    paintHeader(user);
+
+    client.auth.onAuthStateChange(function (_event, session) {
+      paintHeader(session && session.user);
     });
+
+    return { configured: true, user: user, client: client };
   } catch (err) {
-    console.warn('Firebase failed to start.', err);
+    console.warn('Accounts failed to start.', err);
     paintHeader(null);
     return { configured: false, user: null, error: err };
   }

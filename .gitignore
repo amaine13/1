@@ -3,15 +3,12 @@
 scripts/.seed-output/
 .seed-output/
 
-# Firebase / Google Cloud secrets
+# Backend secrets — never commit
 **/serviceAccount*.json
 **/*-firebase-adminsdk-*.json
-.js/firebase-config.local.js
-js/firebase-config.local.js
+js/supabase-config.local.js
+.js/supabase-config.local.js
 .firebase/
-firebase-debug.log
-firestore-debug.log
-ui-debug.log
 
 # Local
 .DS_Store

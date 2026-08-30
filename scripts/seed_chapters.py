@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
-"""Extract the Introduction and Chapters 1–3 and seed them into Firestore.
+"""Extract the Introduction and Chapters 1–3 and seed them into Supabase.
 
 Chapter HTML is never written into the public site. This script is the only
-path that should load sample text into Firebase.
+path that should load sample text into the database.
 
 Usage:
-  python3 scripts/seed_chapters.py --manuscript /path/to/manuscript.docx
   python3 scripts/seed_chapters.py --manuscript /path/to/manuscript.docx --print-only
-  python3 scripts/seed_chapters.py --manuscript /path/to/manuscript.docx --project YOUR_PROJECT_ID
+  python3 scripts/seed_chapters.py --manuscript /path/to/manuscript.docx
 
-Credentials (for --project / live seed):
-  export GOOGLE_APPLICATION_CREDENTIALS=/path/to/serviceAccount.json
+Credentials (for a live seed):
+  export SUPABASE_URL=https://xxxx.supabase.co
+  export SUPABASE_SERVICE_ROLE_KEY=eyJ…
 """
 
 from __future__ import annotations
 
 import argparse
 import html
+import json
+import os
 import re
 import sys
+import urllib.error
+import urllib.request
 import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
@@ -119,37 +123,47 @@ def extract(docx_path: Path) -> list[dict]:
     return docs
 
 
-def seed_firestore(docs: list[dict], project_id: str) -> None:
-    try:
-        import firebase_admin
-        from firebase_admin import credentials, firestore
-    except ImportError as exc:
-        raise SystemExit(
-            "Install firebase-admin first: pip install firebase-admin"
-        ) from exc
-
-    if not firebase_admin._apps:
-        firebase_admin.initialize_app(credentials.ApplicationDefault(), {"projectId": project_id})
-    db = firestore.client()
-    for doc in docs:
-        payload = {
+def seed_supabase(docs: list[dict], url: str, service_role_key: str) -> None:
+    endpoint = url.rstrip("/") + "/rest/v1/chapters?on_conflict=id"
+    payload = [
+        {
+            "id": doc["id"],
             "number": doc["number"],
             "title": doc["title"],
             "html": doc["html"],
-            "wordCount": doc["wordCount"],
+            "word_count": doc["wordCount"],
         }
-        db.collection("chapters").document(doc["id"]).set(payload)
+        for doc in docs
+    ]
+    request = urllib.request.Request(
+        endpoint,
+        data=json.dumps(payload).encode("utf-8"),
+        method="POST",
+        headers={
+            "apikey": service_role_key,
+            "Authorization": f"Bearer {service_role_key}",
+            "Content-Type": "application/json",
+            "Prefer": "resolution=merge-duplicates,return=minimal",
+        },
+    )
+    try:
+        with urllib.request.urlopen(request) as response:
+            response.read()
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")
+        raise SystemExit(f"Supabase write failed ({exc.code}): {detail}") from exc
+
+    for doc in docs:
         print(f"Wrote chapters/{doc['id']} ({doc['wordCount']} words) — {doc['title']}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manuscript", required=True, type=Path, help="Path to the .docx manuscript")
-    parser.add_argument("--project", help="Firebase / GCP project ID")
     parser.add_argument(
         "--print-only",
         action="store_true",
-        help="Extract and print word counts without writing to Firestore",
+        help="Extract and print word counts without writing to Supabase",
     )
     args = parser.parse_args()
 
@@ -164,14 +178,17 @@ def main() -> None:
 
     if args.print_only:
         return
-    if not args.project:
+
+    url = os.environ.get("SUPABASE_URL", "").strip()
+    key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "").strip()
+    if not url or not key:
         print(
-            "Dry run complete. Re-run with --project YOUR_PROJECT_ID and "
-            "GOOGLE_APPLICATION_CREDENTIALS set to seed Firestore.",
+            "Dry run complete. Re-run with SUPABASE_URL and "
+            "SUPABASE_SERVICE_ROLE_KEY set to seed the chapters table.",
             file=sys.stderr,
         )
         return
-    seed_firestore(docs, args.project)
+    seed_supabase(docs, url, key)
 
 
 if __name__ == "__main__":
