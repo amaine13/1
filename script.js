@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  document.documentElement.classList.add('js');
+
   /* Header scroll state */
   var header = document.querySelector('.site-header');
   if (header) {

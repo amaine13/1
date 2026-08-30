@@ -465,13 +465,17 @@ p:last-child {
   transform: none;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 /* Sunrise hero
    ========================================================================== */
 
 .hero--sunrise {
-  min-height: 100vh;
-  padding-top: calc(var(--header-height) + 3.5rem);
-  padding-bottom: 5rem;
+  min-height: 36rem;
+  padding-top: calc(var(--header-height) + 4.5rem);
+  padding-bottom: 6rem;
   background:
     radial-gradient(ellipse 88% 50% at 50% 86%, rgba(232, 164, 80, 0.58) 0%, rgba(196, 162, 101, 0.16) 32%, transparent 62%),
     radial-gradient(ellipse 40% 28% at 50% 100%, rgba(232, 196, 168, 0.22) 0%, transparent 70%),
@@ -1212,15 +1216,8 @@ p:last-child {
    ========================================================================== */
 
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .reveal-delay-1 { transition-delay: 0.1s; }
@@ -1337,7 +1334,6 @@ p:last-child {
   }
 
   .hero--sunrise {
-    min-height: auto;
     padding-bottom: 4rem;
   }
 }

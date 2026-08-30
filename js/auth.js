@@ -19,6 +19,7 @@ export function waitForAuthReady() {
 
 function setShown(root, signedIn) {
   if (!root) return;
+  root.classList.toggle('is-signed-in', signedIn);
   root.querySelectorAll('[data-show="guest"]').forEach(function (el) {
     el.hidden = signedIn;
   });
