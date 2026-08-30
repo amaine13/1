@@ -694,7 +694,12 @@ p:last-child {
   width: 100%;
   height: 230px;
   object-fit: cover;
+  object-position: center center;
   transition: transform var(--transition);
+}
+
+.feature-card-photo--judy {
+  object-position: center 8%;
 }
 
 .feature-card:hover .feature-card-media img {
