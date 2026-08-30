@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Work With Judy | Who's Driving Your Bus?</title>
-  <meta name="description" content="Consultations, workshops, and conversations built around The Bus Framework with Judy Mahler Steinfeld, LCSW.">
-  <link rel="canonical" href="https://whoisdrivingyourbus.com/work-with-judy.html">
+  <title>Read the sample | Who's Driving Your Bus?</title>
+  <meta name="description" content="Early Readers reading room — Chapters 1–3 of Who's Driving Your Bus?">
+  <link rel="canonical" href="https://whoisdrivingyourbus.com/read.html">
+  <meta name="robots" content="noindex">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,11 +19,11 @@
         <a href="about.html">About Judy</a>
         <a href="framework.html">The Framework</a>
         <a href="book.html">The Book</a>
-        <a href="work-with-judy.html" class="is-active">Work With Judy</a>
+        <a href="work-with-judy.html">Work With Judy</a>
         <a href="contact.html">Contact</a>
         <div class="header-actions header-actions--desktop" data-auth-slot>
           <a href="join.html" class="btn btn--gold btn--compact" data-show="guest">Join as an Early Reader</a>
-          <a href="read.html" class="btn btn--gold btn--compact" data-show="user" hidden>Read the sample</a>
+          <a href="read.html" class="btn btn--gold btn--compact is-active" data-show="user" hidden>Read the sample</a>
           <button type="button" class="btn btn--ghost-light btn--compact" data-show="user" data-signout hidden>Sign out</button>
         </div>
       </nav>
@@ -39,7 +40,7 @@
       <li><a href="about.html">About Judy</a></li>
       <li><a href="framework.html">The Framework</a></li>
       <li><a href="book.html">The Book</a></li>
-      <li><a href="work-with-judy.html" class="is-active">Work With Judy</a></li>
+      <li><a href="work-with-judy.html">Work With Judy</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="header-actions" data-auth-slot>
@@ -49,53 +50,39 @@
     </div>
   </nav>
 
-  <main>
-
-    <section class="page-hero">
-      <div class="container reveal">
-        <p class="eyebrow">Work With Judy</p>
-        <h1>People recognize themselves. Then they want more.</h1>
-        <p class="lead">Individuals, groups, book clubs, and organizations across New York, Los Angeles, and Santiago, Chile. Write Judy to inquire — she will tell you what is possible right now.</p>
+  <main class="reader-shell">
+    <div class="container">
+      <div id="reader-pending" class="account-pending" hidden>
+        Accounts are being connected. The sample chapters will appear here once Judy’s Firebase project is attached and Chapters 1–3 are seeded. They are not published as public pages.
       </div>
-    </section>
-
-    <section class="section section--cream">
-      <div class="container offering-grid">
-        <article class="offering-card reveal">
-          <h3>Individual sessions</h3>
-          <p>For women, men, and couples navigating a pattern that will not break, a relationship that keeps repeating, or a quiet sense that something is off. Honesty, warmth, no judgment.</p>
-        </article>
-        <article class="offering-card reveal reveal-delay-1">
-          <h3>Workshops &amp; retreats</h3>
-          <p>Guided reflection, group conversation, and Bus Stop Practices. Participants do not just learn about their passengers. They meet them.</p>
-        </article>
-        <article class="offering-card reveal reveal-delay-2">
-          <h3>Group sessions</h3>
-          <p>One person works with Judy while the room witnesses. Vicarious therapy: each person receives the work, even when they are not the one in the chair. No analysis. No suggestions. Real things can finally be said.</p>
-        </article>
-        <article class="offering-card reveal reveal-delay-3">
-          <h3>Book clubs &amp; organizations</h3>
-          <p>Guided conversations for reading groups, clinical teams, leadership circles, schools, and community organizations. You have ridden a bus. So have the people you work with.</p>
-        </article>
-      </div>
-      <div class="container" style="margin-top: 2.75rem;">
-        <div class="btn-group reveal">
-          <a href="contact.html" class="btn btn--gold">Write Judy</a>
-          <a href="join.html" class="btn btn--secondary">Join as an Early Reader</a>
+      <div id="reader-locked" class="reader-locked" hidden>
+        <p class="eyebrow">Early Readers</p>
+        <h1>The sample is behind the gate.</h1>
+        <p class="lead">Join as an Early Reader — or sign in — to read Chapters 1–3.</p>
+        <div class="btn-group" style="justify-content: center;">
+          <a href="join.html" class="btn btn--gold">Join as an Early Reader</a>
+          <a href="login.html" class="btn btn--secondary">Sign in</a>
         </div>
       </div>
-    </section>
-
-    <section class="section section--navy">
-      <div class="container">
-        <div class="content-block reveal">
-          <p class="eyebrow">Who This Is For</p>
-          <h2>You do not have to be in crisis to do this work.</h2>
-          <p>The people Judy works with are often self-aware and frustrated that awareness alone has not been enough. The Bus Framework meets them where they are.</p>
-        </div>
+      <div id="reader-live" hidden>
+        <p class="eyebrow">Early Readers</p>
+        <h2 style="margin-bottom: 1.25rem;">The first three chapters</h2>
+        <div class="reader-toolbar" id="chapter-tabs" role="tablist" aria-label="Sample chapters"></div>
+        <article class="reader-paper" id="chapter-body">
+          <p>Loading the chapter…</p>
+        </article>
+        <form class="reader-paper chapter-feedback" id="feedback-form">
+          <h3>What did you notice?</h3>
+          <p>Optional. Judy may use your name and this note to develop and promote the book.</p>
+          <div class="form-group">
+            <label for="feedback">Your note on this chapter</label>
+            <textarea id="feedback" name="feedback" rows="5" maxlength="4000"></textarea>
+          </div>
+          <button type="submit" class="btn btn--gold" id="feedback-submit">Save note</button>
+          <p id="feedback-status" class="form-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
-    </section>
-
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -137,5 +124,6 @@
 
   <script src="script.js"></script>
   <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/reader.js"></script>
 </body>
 </html>

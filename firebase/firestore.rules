@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isSelf(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    match /readers/{uid} {
+      allow read: if isSelf(uid);
+      allow create: if isSelf(uid)
+        && request.resource.data.keys().hasAll(['name', 'email', 'consent', 'source'])
+        && request.resource.data.consent == true
+        && request.resource.data.source == 'early-reader';
+      allow update: if isSelf(uid);
+      allow delete: if false;
+    }
+
+    match /chapters/{chapterId} {
+      allow read: if signedIn() && chapterId in ['1', '2', '3'];
+      allow write: if false;
+    }
+  }
+}

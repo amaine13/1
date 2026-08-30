@@ -7,9 +7,8 @@
   <meta name="description" content="The Bus Framework by Judy Mahler Steinfeld, LCSW — a practical guide to understanding the parts of yourself that were created to protect you, and learning how to take back the driver's seat of your life.">
   <link rel="canonical" href="https://whoisdrivingyourbus.com/">
   <link rel="stylesheet" href="styles.css">
-  <!-- deploy-test: 2026-08-30 -->
 </head>
-<body>
+<body class="page-home">
 
   <header class="site-header">
     <div class="container header-inner">
@@ -21,6 +20,11 @@
         <a href="book.html">The Book</a>
         <a href="work-with-judy.html">Work With Judy</a>
         <a href="contact.html">Contact</a>
+        <div class="header-actions header-actions--desktop" data-auth-slot>
+          <a href="join.html" class="btn btn--gold btn--compact" data-show="guest">Join as an Early Reader</a>
+          <a href="read.html" class="btn btn--gold btn--compact" data-show="user" hidden>Read the sample</a>
+          <button type="button" class="btn btn--ghost-light btn--compact" data-show="user" data-signout hidden>Sign out</button>
+        </div>
       </nav>
       <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span>
@@ -38,21 +42,29 @@
       <li><a href="work-with-judy.html">Work With Judy</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+    <div class="header-actions" data-auth-slot>
+      <a href="join.html" class="btn btn--gold" data-show="guest">Join as an Early Reader</a>
+      <a href="read.html" class="btn btn--gold" data-show="user" hidden>Read the sample</a>
+      <button type="button" class="btn btn--outline-light" data-show="user" data-signout hidden>Sign out</button>
+    </div>
   </nav>
 
   <main>
 
-    <!-- Hero -->
-    <section class="hero">
+    <section class="hero--sunrise">
       <div class="container hero-grid">
         <div class="hero-content reveal">
-          <p class="eyebrow">The Bus Framework</p>
+          <p class="eyebrow">Early Readers</p>
           <h1>Who's Driving Your Bus?</h1>
           <p class="subheadline">A Practical Guide to Loving Yourself—For Real</p>
-          <p>Have you ever said something you immediately regretted? Repeated a pattern in a relationship you swore you were done with? Reached for your phone, or a glass of wine — not because you needed it, but because something felt unbearable and you needed it to stop? These are not failures. They are what happens when a frightened passenger grabs the wheel without you noticing.</p>
+          <p class="hero-line">
+            “Don’t worry. There’s always another bus.”
+            <cite>Grandmother Sarah</cite>
+          </p>
+          <p>The passengers are not who you are. They are what happened to you. Join as an Early Reader to read the first three chapters and tell Judy what you notice.</p>
           <div class="btn-group">
-            <a href="framework.html" class="btn btn--primary">Explore the Framework</a>
-            <a href="about.html" class="btn btn--secondary">Meet Judy</a>
+            <a href="join.html" class="btn btn--gold">Join as an Early Reader</a>
+            <a href="about.html" class="btn btn--outline-light">Meet Judy</a>
           </div>
         </div>
         <div class="hero-visual reveal reveal-delay-2">
@@ -63,77 +75,89 @@
       </div>
     </section>
 
-    <!-- Signature Quote -->
-    <section class="quote-section">
-      <div class="container">
-        <blockquote class="quote-text reveal">
-          The passengers are not who you are. They are what happened to you.
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- Meet the Passengers -->
     <section class="section section--cream">
       <div class="container">
         <div class="section-header section-header--center reveal">
-          <p class="eyebrow">The Passengers</p>
+          <p class="eyebrow">The Passenger Roster</p>
           <h2>Who is driving your bus right now?</h2>
         </div>
         <div class="passengers-grid">
           <article class="passenger-card reveal reveal-delay-1">
+            <span class="passenger-num">01</span>
             <h3>The Judge</h3>
             <p>Finds the flaw before anyone else can. Criticizes first to stay one step ahead of rejection.</p>
           </article>
           <article class="passenger-card reveal reveal-delay-2">
+            <span class="passenger-num">02</span>
             <h3>The Pleaser</h3>
             <p>Keeps everyone comfortable while quietly abandoning itself. Confuses being needed with being loved.</p>
           </article>
           <article class="passenger-card reveal reveal-delay-3">
+            <span class="passenger-num">03</span>
             <h3>The Fear Maker</h3>
             <p>Scans constantly for danger, even when the danger is long gone. Its vigilance once kept you safe.</p>
           </article>
           <article class="passenger-card reveal reveal-delay-4">
+            <span class="passenger-num">04</span>
             <h3>The Love Addict</h3>
             <p>Clings tightly out of the terror that love will disappear — and in clinging, sometimes pushes it away.</p>
           </article>
           <article class="passenger-card reveal reveal-delay-5">
-            <h3>The Hider</h3>
-            <p>Believes invisibility is the safest way to move through life. It stays unknown to stay unhurt.</p>
+            <span class="passenger-num">05</span>
+            <h3>The Wall Flower</h3>
+            <p>Presses itself to the edges of the room. Invisible feels survivable — and no one can reach what they cannot see.</p>
           </article>
           <article class="passenger-card reveal reveal-delay-6">
+            <span class="passenger-num">06</span>
             <h3>The Pretender</h3>
-            <p>Covers the flaws, performs the competence. If they knew who I really was, they would leave. Under the mask lies vast loneliness.</p>
+            <p>Covers the flaws, performs the competence. If they knew who I really was, they would leave.</p>
           </article>
         </div>
-        <p class="reveal" style="text-align: center; font-style: italic; margin-top: 2rem; color: inherit; opacity: 0.8;">These are just six of the nineteen passengers waiting on your bus. The rest are in the book — and chances are, you'll recognize every single one.</p>
+        <div class="roster-closer reveal">
+          <h3>Twenty-one passengers ride in the book.</h3>
+          <p>These six are only the ones already stirring at the front. The rest wait further back — quieter, familiar, and named in Chapter 4.</p>
+          <div class="roster-names">
+            <span>The Judge</span>
+            <span>The Love Addict</span>
+            <span>The Pleaser</span>
+            <span>The Pretender</span>
+            <span>The Engulfment Victim</span>
+            <span>The Fighter and the Bully</span>
+            <span>The Jokester</span>
+            <span>The Wall Flower</span>
+            <span>The Fear Maker</span>
+            <span>The Avoider</span>
+            <span>The Comparer</span>
+            <span>The Fixer</span>
+            <span>“I Didn’t Do It!”</span>
+            <span>The Dictator</span>
+            <span>The Shamer</span>
+            <span>The Gossip</span>
+            <span>The Overthinker</span>
+            <span>The Procrastinator</span>
+            <span>The Inner Critic</span>
+            <span>The Underminer</span>
+            <span>The Shoulder</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- The Pain Point -->
-    <section class="section section--warm">
+    <section class="section section--navy">
       <div class="container preview-block">
         <div class="preview-image preview-image--portrait reveal">
           <img src="assets/images/knowing.png" alt="">
         </div>
         <div class="preview-content reveal reveal-delay-2">
           <p class="eyebrow">Why This Is Different</p>
-          <h2>Knowing isn't enough. And you already know that.</h2>
-          <p>People who reach for a self-help book are rarely lacking in self-awareness. They already know something is not working. They know they keep reacting the same way in relationships. They recognize the harsh inner voice that wakes them at 3am and understand, logically, that it is not helping. What they cannot figure out is why knowing all of this changes nothing.</p>
-          <p>Most approaches to personal growth ask people to override their inner voices through willpower, positive thinking, or affirmations. But the passengers on our bus do not respond to force or fixing. They are not broken. They respond to understanding. What we resist, persists. The parts we ignore do not disappear. They wait — and then, in our most unguarded moments, they grab the wheel.</p>
-          <p>When people see themselves react in ways that do not work — pull away from someone they love, act out in anger, medicate their pain with something, anything — they do not just feel frustrated. They feel ashamed. That shame becomes its own passenger, one of the loudest on the bus, and it makes genuine change almost impossible. This book addresses shame directly: not by dismissing it, but by helping readers understand where it came from, and why it no longer needs to be in charge.</p>
+          <h2>Knowing isn’t enough. And you already know that.</h2>
+          <p>People who reach for a self-help book are rarely lacking in self-awareness. They already know something is not working. What they cannot figure out is why knowing all of this changes nothing.</p>
+          <p>The passengers do not respond to force or fixing. They respond to understanding. The parts we ignore do not disappear. They wait — and then they grab the wheel.</p>
         </div>
       </div>
     </section>
 
-    <section class="quote-section">
-      <div class="container">
-        <blockquote class="quote-text reveal">
-          You cannot love yourself by pretending the difficult parts do not exist. Real love begins when you can look at your most frightened passengers with honesty and compassion rather than shame.
-        </blockquote>
-      </div>
-    </section>
-
-    <section class="section section--cream">
+    <section class="section section--paper">
       <div class="container preview-block">
         <div class="preview-image preview-image--portrait reveal">
           <img src="assets/images/chapter13.png" alt="Two people walking together">
@@ -141,26 +165,25 @@
         <div class="preview-content reveal reveal-delay-2">
           <p class="eyebrow">From the Book</p>
           <h2>When two buses meet.</h2>
-          <p>In 1968, Judy met someone at a party. The connection was immediate and the relationship meaningful. Before it ended, she had a dream: they were riding a train together, he stepped off at a station, and she stayed on. Not long after, he left.</p>
-          <p>Years of separation followed — including years of deep inner work on both sides. Then, after all that time, he got back on the train. They were together until his death two years ago, more healed and more loving of themselves and each other than either could have been before.</p>
-          <p>The dream was not just a prediction. It was a map. And the work she did in the years between was what made those final years possible. Relationships are not the problem. They are the curriculum.</p>
+          <p>In 1968, Judy met someone at a party. The connection was immediate. Before it ended, she had a dream: they were riding a train together, he stepped off at a station, and she stayed on. Not long after, he left.</p>
+          <p>Years of inner work followed on both sides. Then he got back on the train. They were together until his death two years ago — more healed, and more loving, than either could have been before.</p>
+          <p>Relationships are not the problem. They are the curriculum.</p>
           <div class="btn-group">
-            <a href="framework.html" class="btn btn--primary">Explore the Framework</a>
-            <a href="book.html" class="btn btn--secondary">About the Book</a>
+            <a href="book.html" class="btn btn--primary">About the Book</a>
+            <a href="join.html" class="btn btn--gold">Read the first three chapters</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- About Judy Preview -->
-    <section class="section section--warm">
-      <div class="container preview-block">
+    <section class="section section--cream">
+      <div class="container preview-block preview-block--reverse">
         <div class="preview-content reveal">
           <p class="eyebrow">About Judy</p>
-          <h2>The bus framework didn't begin as a book. It grew out of forty years of sitting with people.</h2>
-          <p>Judy Mahler Steinfeld, LCSW, trained at Columbia University and the Gestalt Center for Psychotherapy and Training in New York City, where she later served on faculty. Her approach has always been experiential rather than analytical — less interested in helping people understand their patterns from the outside than in helping them encounter those patterns directly, feel what they feel in the body, and find a way through.</p>
+          <h2>Forty years in the therapy room, then a book.</h2>
+          <p>Judy Mahler Steinfeld, LCSW, trained at Columbia University and the Gestalt Center for Psychotherapy and Training in New York City, where she later served on faculty. The bus framework grew out of sitting with people — not a research paper.</p>
           <div class="btn-group">
-            <a href="about.html" class="btn btn--primary">About Judy</a>
+            <a href="about.html" class="btn btn--primary">Meet Judy</a>
           </div>
         </div>
         <div class="preview-image preview-image--portrait reveal reveal-delay-2">
@@ -169,32 +192,16 @@
       </div>
     </section>
 
-    <!-- The True Self -->
-    <section class="section section--warm">
-      <div class="container preview-block preview-block--reverse">
-        <div class="preview-content reveal">
-          <p class="eyebrow">Underneath All of It</p>
-          <h2>The passengers are not who you are. They are what happened to you.</h2>
-          <p>Most people who struggle with self-criticism, fear, or repeating patterns are not broken. They have simply mistaken themselves for a frightened passenger. The Critic has been there so long it feels like personality. The Fear Maker feels so familiar it feels like identity.</p>
-          <p>But underneath all of them is something that is none of them. A True Self that is larger, steadier, and more capable of love than any single passenger has ever been. That distinction — between who you are and what happened to you — changes everything.</p>
-          <p>The goal is not to silence those passengers or push them off the bus. It is to meet them, understand where they came from, and gently move them back to their seats. They can ride. They just cannot drive.</p>
-        </div>
-        <div class="preview-image reveal reveal-delay-2">
-          <img src="assets/images/true-self.png" alt="An open road toward the horizon">
-        </div>
-      </div>
-    </section>
-
-    <!-- Book Preview -->
-    <section class="section section--cream">
+    <section class="section section--navy">
       <div class="container preview-block">
         <div class="preview-content reveal">
           <p class="eyebrow">The Book</p>
-          <h2>Who's Driving Your Bus?</h2>
-          <p class="subheadline">A Practical Guide to Loving Yourself—For Real</p>
-          <p>Judy's first book is for readers who feel stuck in patterns they can see but cannot seem to change — who know, logically, that the inner critic is not helping, but cannot make it stop. Each chapter closes with a Bus Stop Practice: a short, grounded exercise drawn from decades of clinical work, designed to help readers pause, listen inward, and begin the work in real life.</p>
+          <h2>Twenty-five chapters. One question.</h2>
+          <p class="subheadline" style="color: var(--gold-light);">Who is driving your bus right now?</p>
+          <p>Each chapter closes with a Bus Stop Practice: a short, grounded exercise drawn from decades of clinical work. Early Readers can read Chapters 1–3 now and tell Judy what they notice.</p>
           <div class="btn-group">
-            <a href="book.html" class="btn btn--primary">Explore the Book</a>
+            <a href="join.html" class="btn btn--gold">Join as an Early Reader</a>
+            <a href="book.html" class="btn btn--outline-light">See the chapter list</a>
           </div>
         </div>
         <div class="preview-image preview-image--portrait reveal reveal-delay-2">
@@ -203,15 +210,15 @@
       </div>
     </section>
 
-    <!-- Work With Judy Preview -->
-    <section class="section section--warm">
+    <section class="section section--paper">
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">Work With Judy</p>
-          <h2>Wherever she presents the framework, the response is the same: people recognize themselves immediately.</h2>
-          <p class="lead">Judy works with individuals, groups, book clubs, Rotary Clubs, professional circles, and community organizations across New York, Los Angeles, and Santiago, Chile. The most common question after every session is the same: when will the book be available?</p>
+          <h2>Wherever she presents the framework, people recognize themselves immediately.</h2>
+          <p class="lead">Individuals, groups, book clubs, Rotary Clubs, professional circles, and community organizations across New York, Los Angeles, and Santiago, Chile.</p>
           <div class="btn-group">
             <a href="work-with-judy.html" class="btn btn--gold">Work With Judy</a>
+            <a href="contact.html" class="btn btn--secondary">Get in touch</a>
           </div>
         </div>
       </div>
@@ -220,18 +227,43 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p class="footer-name">Judy Mahler Steinfeld, LCSW</p>
-      <p class="footer-locations">New York | Los Angeles | Santiago, Chile</p>
-      <div class="footer-divider"></div>
-      <div class="footer-contact">
-        <a href="mailto:heyjude201@gmail.com">Email: heyjude201@gmail.com</a>
-        <a href="tel:+19175968533">Phone: +1 (917) 596-8533</a>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-name">Judy Mahler Steinfeld, LCSW</p>
+          <p class="footer-locations">New York | Los Angeles | Santiago, Chile</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About Judy</a>
+          <a href="framework.html">The Framework</a>
+          <a href="work-with-judy.html">Work With Judy</a>
+        </div>
+        <div class="footer-col">
+          <h4>The Book</h4>
+          <a href="book.html">Who’s Driving Your Bus?</a>
+          <a href="book.html#chapters">25 chapters</a>
+          <a href="framework.html">The passengers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Early Readers</h4>
+          <a href="join.html">Join as an Early Reader</a>
+          <a href="login.html">Sign in</a>
+          <a href="read.html">Read the sample</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="contact.html">Write Judy</a>
+          <a href="mailto:heyjude201@gmail.com">heyjude201@gmail.com</a>
+          <a href="tel:+19175968533">+1 (917) 596-8533</a>
+        </div>
       </div>
       <p class="footer-copy">&copy; 2026 Judy Mahler Steinfeld. All rights reserved.</p>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  <script type="module" src="js/auth.js"></script>
 </body>
 </html>
