@@ -175,12 +175,24 @@ function friendlyAuthError(err) {
   return (err && err.message) || 'Something went wrong. Please try again.';
 }
 
+function prefillJoinFromQuery() {
+  var form = document.getElementById('join-form');
+  if (!form) return;
+  var params = new URLSearchParams(window.location.search);
+  var first = params.get('first');
+  var email = params.get('email');
+  if (first && form.firstName) form.firstName.value = first;
+  if (email && form.email) form.email.value = email;
+}
+
 waitForAuthReady().then(function (state) {
   if (!state.configured) markPendingForms();
   if (state.configured && state.user && document.getElementById('join-form')) {
     window.location.replace(nextPath());
   }
 });
+
+prefillJoinFromQuery();
 
 var joinForm = document.getElementById('join-form');
 if (joinForm) {

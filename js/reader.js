@@ -1,12 +1,13 @@
 import { isFirebaseConfigured, waitForAuthReady, getFirebase } from './auth.js';
 
 var CHAPTERS = [
-  { id: '1', title: 'Meet Your Bus!' },
-  { id: '2', title: 'How Passengers Board the Bus' },
-  { id: '3', title: 'Emotional Baggage' }
+  { id: 'intro', title: "There's Always Another Bus", label: 'Introduction' },
+  { id: '1', title: 'Meet Your Bus!', label: 'Ch. 1' },
+  { id: '2', title: 'How Passengers Board the Bus', label: 'Ch. 2' },
+  { id: '3', title: 'Emotional Baggage', label: 'Ch. 3' }
 ];
 
-var currentId = '1';
+var currentId = 'intro';
 var cache = {};
 
 function show(id, on) {
@@ -24,7 +25,7 @@ function renderTabs() {
     btn.className = 'chapter-tab' + (ch.id === currentId ? ' is-active' : '');
     btn.setAttribute('role', 'tab');
     btn.setAttribute('aria-selected', ch.id === currentId ? 'true' : 'false');
-    btn.textContent = 'Ch. ' + ch.id + ' — ' + ch.title;
+    btn.textContent = (ch.label || ch.id) + ' — ' + ch.title;
     btn.addEventListener('click', function () {
       currentId = ch.id;
       renderTabs();
@@ -65,7 +66,8 @@ async function renderChapter() {
     var data = await loadChapter(currentId);
     if (body) {
       var heading = document.createElement('h1');
-      heading.textContent = 'Chapter ' + currentId + ' — ' + (data.title || '');
+      var meta = CHAPTERS.find(function (ch) { return ch.id === currentId; });
+      heading.textContent = (meta && meta.label ? meta.label + ' — ' : '') + (data.title || meta.title || '');
       body.innerHTML = '';
       body.appendChild(heading);
       var wrap = document.createElement('div');
@@ -80,7 +82,7 @@ async function renderChapter() {
   } catch (err) {
     if (body) {
       body.innerHTML =
-        '<p>This chapter is not available yet. After Firebase is connected, run the seed script so Chapters 1–3 can be read here.</p>';
+        '<p>This piece is not available yet. After Firebase is connected, run the seed script so the introduction and Chapters 1–3 can be read here.</p>';
     }
   }
 }

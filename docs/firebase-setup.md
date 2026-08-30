@@ -1,6 +1,8 @@
 # Early Readers: Firebase setup
 
-The public site is static HTML. Accounts, the mailing list, and Chapters 1–3 live in a Firebase project. Until the public web config is pasted into `js/firebase-config.js`, join and login still render and show **Accounts are being connected** instead of failing silently.
+The public site is static HTML. Accounts, the mailing list, and the sample (Introduction + Chapters 1–3) live in a Firebase project. Until the public web config is pasted into `js/firebase-config.js`, join and login still render and show **Accounts are being connected** instead of failing silently.
+
+Review the redesign on the Cloudflare Pages **preview** for this branch. Do not merge to `main` until that staging URL is approved — `main` is the live site.
 
 Do **not** commit the manuscript or chapter HTML to the repo.
 
@@ -17,6 +19,7 @@ Under Authentication → Settings → Authorized domains, add:
 
 - `whoisdrivingyourbus.com`
 - `www.whoisdrivingyourbus.com`
+- the Cloudflare Pages preview host for this branch (for example `*.pages.dev`)
 - `localhost` (already present; keep it for local checks)
 
 ## 3. Paste the public config
@@ -47,9 +50,9 @@ firebase deploy --only firestore:rules --project YOUR_PROJECT_ID
 The rules file is `firebase/firestore.rules`:
 
 - `readers/{uid}` — the signed-in reader can read/write only their own profile
-- `chapters/{1|2|3}` — signed-in users can read; nobody can write from the client
+- `chapters/{intro|1|2|3}` — signed-in users can read; nobody can write from the client
 
-## 5. Seed Chapters 1–3
+## 5. Seed the Introduction and Chapters 1–3
 
 Keep the manuscript off the public site. On a private machine:
 
@@ -81,7 +84,7 @@ Each join writes `readers/{uid}`:
 | `consentAt` | ISO timestamp of the required disclaimer |
 | `createdAt` | Server timestamp |
 | `source` | `early-reader` |
-| `feedback` | Optional notes keyed by chapter id (`1`, `2`, `3`) |
+| `feedback` | Optional notes keyed by piece id (`intro`, `1`, `2`, `3`) |
 
 Export later from Firestore or BigQuery. No Mailchimp or CRM is required for this pass.
 
@@ -93,4 +96,4 @@ Judy also receives an email on every new join, via the same FormSubmit address a
 python3 -m http.server 8080
 ```
 
-Open `http://localhost:8080/join.html`. If config is still empty, the gold banner should say accounts are being connected. After config + rules + seed, join → reading room should load Chapters 1–3.
+Open `http://localhost:8080/join.html`. If config is still empty, the gold banner should say accounts are being connected. After config + rules + seed, join → reading room should load the introduction and Chapters 1–3.

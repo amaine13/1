@@ -20,7 +20,7 @@ service cloud.firestore {
     }
 
     match /chapters/{chapterId} {
-      allow read: if signedIn() && chapterId in ['1', '2', '3'];
+      allow read: if signedIn() && chapterId in ['intro', '1', '2', '3'];
       allow write: if false;
     }
   }
