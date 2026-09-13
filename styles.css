@@ -784,7 +784,7 @@ p:last-child {
   color: var(--text-muted);
 }
 
-/* Early Reader (application, feedback, admin)
+/* Early Reader (application, feedback, admin) — additive only
    ========================================================================== */
 
 .er-auth-grid {
