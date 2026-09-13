@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join as an Early Reader | Who's Driving Your Bus?</title>
-  <meta name="description" content="Read the introduction and first three chapters of Who's Driving Your Bus? and tell Judy what you notice.">
+  <title>Request Early Reader Access | Who's Driving Your Bus?</title>
+  <meta name="description" content="Request access to a private Early Reader sample of Who's Driving Your Bus? by Judy Mahler Steinfeld.">
   <link rel="canonical" href="https://whoisdrivingyourbus.com/join.html">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -19,12 +19,8 @@
         <a href="framework.html">The Framework</a>
         <a href="book.html">The Book</a>
         <a href="work-with-judy.html">Work With Judy</a>
+        <a href="join.html" class="is-active">Early Readers</a>
         <a href="contact.html">Contact</a>
-        <div class="header-actions header-actions--desktop" data-auth-slot>
-          <a href="join.html" class="btn btn--gold btn--compact is-active" data-show="guest">Join as an Early Reader</a>
-          <a href="read.html" class="btn btn--gold btn--compact" data-show="user" hidden>Read the sample</a>
-          <button type="button" class="btn btn--ghost-light btn--compact" data-show="user" data-signout hidden>Sign out</button>
-        </div>
       </nav>
       <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span>
@@ -40,101 +36,163 @@
       <li><a href="framework.html">The Framework</a></li>
       <li><a href="book.html">The Book</a></li>
       <li><a href="work-with-judy.html">Work With Judy</a></li>
+      <li><a href="join.html" class="is-active">Early Readers</a></li>
+      <li><a href="feedback.html">Share Feedback</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <div class="header-actions" data-auth-slot>
-      <a href="join.html" class="btn btn--gold" data-show="guest">Join as an Early Reader</a>
-      <a href="read.html" class="btn btn--gold" data-show="user" hidden>Read the sample</a>
-      <button type="button" class="btn btn--outline-light" data-show="user" data-signout hidden>Sign out</button>
-    </div>
   </nav>
 
   <main>
     <section class="page-hero">
-      <div class="container reveal">
-        <p class="eyebrow">Early Readers</p>
-        <h1>Read the introduction and the first three chapters. Tell us what you notice.</h1>
-        <p class="lead">There's Always Another Bus, then Meet Your Bus!, How Passengers Board the Bus, and Emotional Baggage — about thirty minutes of reading, then an optional note to Judy.</p>
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">Early Readers</p>
+          <h1>Request Early Reader Access</h1>
+          <p class="lead">We review requests individually. If approved, you’ll receive access to the private reading sample within 24 to 48 hours.</p>
+        </div>
       </div>
     </section>
 
     <section class="section section--cream">
-      <div class="container" style="max-width: 640px;">
-        <div class="auth-card reveal">
-          <div id="account-pending" class="account-pending" hidden>
-            Accounts are being connected. You can fill out this form, but new Early Reader accounts are not live yet. Check back shortly, or write Judy at heyjude201@gmail.com.
-          </div>
-          <form id="join-form" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="firstName">First name</label>
-                <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
-              </div>
-              <div class="form-group">
-                <label for="lastName">Last name</label>
-                <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
-              </div>
+      <div class="container er-auth-grid">
+        <div class="er-card reveal" id="apply-card">
+          <h2>Request access</h2>
+          <p class="er-card-intro">Already reading the sample? <a href="feedback.html">Share your feedback here</a>.</p>
+
+          <form id="apply-form" novalidate>
+            <div class="form-group">
+              <label for="first-name">First name</label>
+              <input type="text" id="first-name" name="first_name" required autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last name</label>
+              <input type="text" id="last-name" name="last_name" required autocomplete="family-name">
             </div>
             <div class="form-group">
               <label for="email">Email</label>
               <input type="email" id="email" name="email" required autocomplete="email">
             </div>
             <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" id="password" name="password" required minlength="8" autocomplete="new-password">
+              <label for="reason">Why would you like to read the early sample? <span class="er-optional">(optional)</span></label>
+              <textarea id="reason" name="reason" rows="4"></textarea>
             </div>
-            <label class="form-consent">
-              <input type="checkbox" id="consent" name="consent" required>
-              <span>By creating an account, I agree that Judy Mahler Steinfeld may use my name and any feedback I share to develop and promote <em>Who’s Driving Your Bus?</em> I will not copy, share, or distribute the sample chapters.</span>
-            </label>
-            <button type="submit" class="btn btn--gold" id="join-submit">Join as an Early Reader</button>
-            <p id="join-status" class="form-status" role="status" aria-live="polite"></p>
+
+            <div class="er-agreement">
+              <h3>Early Reader Agreement</h3>
+              <div class="er-agreement-body" tabindex="0">
+                <p>By requesting Early Reader access, you understand and agree that:</p>
+                <ul>
+                  <li>This is an unpublished, pre-release manuscript.</li>
+                  <li>It is shared with you in confidence for early reader feedback.</li>
+                  <li>Content, structure, and wording may change before publication.</li>
+                  <li>You will not copy, distribute, post publicly, or share this material without permission.</li>
+                  <li>Your feedback may be used to inform manuscript revisions.</li>
+                </ul>
+              </div>
+              <label class="er-check">
+                <input type="checkbox" id="agreement" name="agreement" required>
+                <span>I have read and agree to the Early Reader Agreement.</span>
+              </label>
+              <label class="er-check">
+                <input type="checkbox" id="book-updates" name="book_updates">
+                <span>I’d like to receive occasional updates about Who’s Driving Your Bus?</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn--primary" id="apply-submit">Request Early Reader Access</button>
+            <p id="apply-status" class="er-status" role="status" aria-live="polite"></p>
           </form>
-          <p class="auth-switch">Already joined? <a href="login.html">Sign in</a></p>
+        </div>
+
+        <div class="er-card reveal" id="success-card" hidden>
+          <h2>Thank you</h2>
+          <p id="success-message">Thank you for your interest in becoming an Early Reader. We review requests individually. If approved, you’ll receive access to the private reading sample within 24 to 48 hours.</p>
+          <div class="btn-group">
+            <a href="index.html" class="btn btn--secondary">Return Home</a>
+            <a href="feedback.html" class="btn btn--primary">Feedback Form</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <p class="footer-name">Judy Mahler Steinfeld, LCSW</p>
-          <p class="footer-locations">New York | Los Angeles | Santiago, Chile</p>
-        </div>
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <a href="index.html">Home</a>
-          <a href="about.html">About Judy</a>
-          <a href="framework.html">The Framework</a>
-          <a href="work-with-judy.html">Work With Judy</a>
-        </div>
-        <div class="footer-col">
-          <h4>The Book</h4>
-          <a href="book.html">Who’s Driving Your Bus?</a>
-          <a href="book.html#chapters">25 chapters</a>
-          <a href="framework.html">The passengers</a>
-        </div>
-        <div class="footer-col">
-          <h4>Early Readers</h4>
-          <a href="join.html">Join as an Early Reader</a>
-          <a href="login.html">Sign in</a>
-          <a href="read.html">Read the sample</a>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <a href="contact.html">Write Judy</a>
-          <a href="mailto:heyjude201@gmail.com">heyjude201@gmail.com</a>
-          <a href="tel:+19175968533">+1 (917) 596-8533</a>
-        </div>
+    <div class="container footer-inner">
+      <p class="footer-name">Judy Mahler Steinfeld, LCSW</p>
+      <p class="footer-locations">New York | Los Angeles | Santiago, Chile</p>
+      <div class="footer-divider"></div>
+      <div class="footer-contact">
+        <a href="mailto:heyjude201@gmail.com">Email: heyjude201@gmail.com</a>
+        <a href="tel:+19175968533">Phone: +1 (917) 596-8533</a>
       </div>
       <p class="footer-copy">&copy; 2026 Judy Mahler Steinfeld. All rights reserved.</p>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/early-reader.js"></script>
   <script src="script.js"></script>
-  <script type="module" src="js/auth.js"></script>
-  <script type="module" src="js/auth-pages.js"></script>
+  <script>
+    (function () {
+      var ER = window.EarlyReader;
+      var form = document.getElementById('apply-form');
+      var statusEl = document.getElementById('apply-status');
+      var btn = document.getElementById('apply-submit');
+      var applyCard = document.getElementById('apply-card');
+      var successCard = document.getElementById('success-card');
+
+      if (!ER.configReady()) {
+        ER.setStatus(statusEl, 'Early Reader requests are not configured yet. Please check back soon.', 'info');
+        btn.disabled = true;
+        return;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        ER.setStatus(statusEl, '');
+
+        var firstName = document.getElementById('first-name').value.trim();
+        var lastName = document.getElementById('last-name').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var reason = document.getElementById('reason').value.trim();
+        var agreement = document.getElementById('agreement').checked;
+        var bookUpdates = document.getElementById('book-updates').checked;
+
+        if (!firstName || !lastName) {
+          ER.setStatus(statusEl, 'Please enter your first and last name.', 'error');
+          return;
+        }
+        if (!email || email.indexOf('@') === -1) {
+          ER.setStatus(statusEl, 'Please enter a valid email address.', 'error');
+          return;
+        }
+        if (!agreement) {
+          ER.setStatus(statusEl, 'Please read and accept the Early Reader Agreement to continue.', 'error');
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Submitting...';
+
+        ER.submitApplication({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          reason: reason,
+          bookUpdatesOptIn: bookUpdates
+        })
+          .then(function () {
+            applyCard.hidden = true;
+            successCard.hidden = false;
+          })
+          .catch(function (err) {
+            ER.setStatus(statusEl, ER.friendlyError(err), 'error');
+            btn.disabled = false;
+            btn.textContent = 'Request Early Reader Access';
+          });
+      });
+    })();
+  </script>
 </body>
 </html>

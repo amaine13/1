@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Early Reader Admin | Who's Driving Your Bus?</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="er-admin-body">
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Who's Driving <span>Your Bus?</span></a>
+      <nav class="nav-desktop" aria-label="Admin">
+        <a href="index.html">Site Home</a>
+        <a href="admin.html" class="is-active">Early Reader Admin</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation" hidden>
+    <ul>
+      <li><a href="index.html">Site Home</a></li>
+      <li><a href="admin.html" class="is-active">Early Reader Admin</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="section section--cream er-admin-section">
+      <div class="container">
+
+        <!-- Login -->
+        <div id="admin-login" class="er-card er-admin-login" hidden>
+          <h1>Early Reader Admin</h1>
+          <p class="er-card-intro">Sign in with your admin account to review applications.</p>
+          <form id="admin-login-form" novalidate>
+            <div class="form-group">
+              <label for="admin-email">Email</label>
+              <input type="email" id="admin-email" required autocomplete="username">
+            </div>
+            <div class="form-group">
+              <label for="admin-password">Password</label>
+              <input type="password" id="admin-password" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn--primary" id="admin-login-btn">Sign In</button>
+            <p id="admin-login-status" class="er-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <!-- Denied -->
+        <div id="admin-denied" class="er-card" hidden>
+          <h1>Access denied</h1>
+          <p>You’re signed in, but this account is not authorized as an Early Reader admin.</p>
+          <button type="button" class="btn btn--secondary" id="denied-logout">Sign out</button>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="admin-dashboard" hidden>
+          <div class="er-admin-header">
+            <div>
+              <p class="eyebrow">Private</p>
+              <h1>Early Reader Applications</h1>
+              <p class="er-admin-workflow">Workflow: Pending → Approve → Copy email → Add as Viewer in Google Doc → Mark Access Sent</p>
+            </div>
+            <button type="button" class="btn btn--secondary" id="admin-logout">Sign out</button>
+          </div>
+
+          <div class="er-admin-stats" id="admin-stats"></div>
+
+          <div class="er-admin-filters" id="admin-filters">
+            <button type="button" class="er-filter is-active" data-filter="all">All</button>
+            <button type="button" class="er-filter" data-filter="pending">Pending</button>
+            <button type="button" class="er-filter" data-filter="approved">Approved</button>
+            <button type="button" class="er-filter" data-filter="declined">Declined</button>
+            <button type="button" class="er-filter" data-filter="access_sent">Access Sent</button>
+            <button type="button" class="er-filter" data-filter="feedback">Feedback Received</button>
+          </div>
+
+          <p id="admin-status" class="er-status" role="status" aria-live="polite"></p>
+
+          <div class="er-admin-table-wrap">
+            <table class="er-admin-table" id="admin-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Date Applied</th>
+                  <th>Status</th>
+                  <th>Agreement</th>
+                  <th>Access Sent</th>
+                  <th>Feedback</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Detail modal -->
+  <div class="er-modal" id="detail-modal" hidden>
+    <div class="er-modal-backdrop" data-close-modal></div>
+    <div class="er-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button type="button" class="er-modal-close" data-close-modal aria-label="Close">&times;</button>
+      <h2 id="modal-title">Application</h2>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/early-reader.js"></script>
+  <script src="script.js"></script>
+  <script src="assets/js/admin-early-readers.js"></script>
+</body>
+</html>

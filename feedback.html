@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Early Reader Feedback | Who's Driving Your Bus?</title>
+  <meta name="description" content="Share feedback on the Early Reader sample of Who's Driving Your Bus?">
+  <link rel="canonical" href="https://whoisdrivingyourbus.com/feedback.html">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Who's Driving <span>Your Bus?</span></a>
+      <nav class="nav-desktop" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Judy</a>
+        <a href="framework.html">The Framework</a>
+        <a href="book.html">The Book</a>
+        <a href="work-with-judy.html">Work With Judy</a>
+        <a href="join.html">Early Readers</a>
+        <a href="feedback.html" class="is-active">Feedback</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation" hidden>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Judy</a></li>
+      <li><a href="framework.html">The Framework</a></li>
+      <li><a href="book.html">The Book</a></li>
+      <li><a href="work-with-judy.html">Work With Judy</a></li>
+      <li><a href="join.html">Early Readers</a></li>
+      <li><a href="feedback.html" class="is-active">Feedback</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">Early Readers</p>
+          <h1>Share your feedback</h1>
+          <p class="lead">Use the same email address you used when requesting Early Reader access. Your honest responses help Judy revise the manuscript.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--cream">
+      <div class="container er-auth-grid er-feedback-wrap">
+        <div class="er-card reveal">
+          <form id="feedback-form" novalidate>
+            <div class="form-group">
+              <label for="email">Email used for your Early Reader request</label>
+              <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="resonated">1. What resonated with you, and what didn’t?</label>
+              <textarea id="resonated" name="resonated" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="clarity">2. Were the ideas clear? Was anything confusing?</label>
+              <textarea id="clarity" name="clarity" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="keep-reading">3. Did you find yourself wanting to keep reading?</label>
+              <textarea id="keep-reading" name="keep_reading" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="slow-sections">4. Was there anywhere the writing felt slow or lost your attention?</label>
+              <textarea id="slow-sections" name="slow_sections" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="true-or-moving">5. What felt especially true or especially moving?</label>
+              <textarea id="true-or-moving" name="true_or_moving" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="additional">6. Is there anything else you would like Judy to know?</label>
+              <textarea id="additional" name="additional_comments" rows="4"></textarea>
+            </div>
+            <label class="er-check">
+              <input type="checkbox" id="testimonial-permission" name="testimonial_permission">
+              <span>Judy may quote my feedback publicly using my first name.</span>
+            </label>
+            <button type="submit" class="btn btn--primary" id="feedback-submit">Submit Feedback</button>
+            <p id="feedback-status" class="er-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-name">Judy Mahler Steinfeld, LCSW</p>
+      <p class="footer-locations">New York | Los Angeles | Santiago, Chile</p>
+      <div class="footer-divider"></div>
+      <div class="footer-contact">
+        <a href="mailto:heyjude201@gmail.com">Email: heyjude201@gmail.com</a>
+        <a href="tel:+19175968533">Phone: +1 (917) 596-8533</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Judy Mahler Steinfeld. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/early-reader.js"></script>
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      var ER = window.EarlyReader;
+      var form = document.getElementById('feedback-form');
+      var statusEl = document.getElementById('feedback-status');
+      var btn = document.getElementById('feedback-submit');
+
+      if (!ER.configReady()) {
+        ER.setStatus(statusEl, 'Feedback is not configured yet. Please check back soon.', 'info');
+        btn.disabled = true;
+        return;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        ER.setStatus(statusEl, '');
+        var email = document.getElementById('email').value.trim();
+        if (!email || email.indexOf('@') === -1) {
+          ER.setStatus(statusEl, 'Please enter the email you used when requesting access.', 'error');
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Saving...';
+
+        ER.submitFeedback({
+          email: email,
+          resonated: document.getElementById('resonated').value.trim(),
+          clarity: document.getElementById('clarity').value.trim(),
+          keepReading: document.getElementById('keep-reading').value.trim(),
+          slowSections: document.getElementById('slow-sections').value.trim(),
+          trueOrMoving: document.getElementById('true-or-moving').value.trim(),
+          additionalComments: document.getElementById('additional').value.trim(),
+          testimonialPermission: document.getElementById('testimonial-permission').checked
+        })
+          .then(function (result) {
+            if (!result || result.ok !== true) {
+              if (result && result.code === 'not_approved') {
+                ER.setStatus(
+                  statusEl,
+                  'We couldn’t find an approved Early Reader request for that email address. Please use the same email you used when applying.',
+                  'error'
+                );
+              } else if (result && result.code === 'missing_email') {
+                ER.setStatus(statusEl, 'Please enter the email you used when requesting access.', 'error');
+              } else {
+                ER.setStatus(statusEl, 'We couldn’t save your feedback. Please try again.', 'error');
+              }
+              return;
+            }
+            ER.setStatus(statusEl, 'Thank you. Your feedback has been saved.', 'success');
+          })
+          .catch(function (err) {
+            ER.setStatus(statusEl, ER.friendlyError(err), 'error');
+          })
+          .finally(function () {
+            btn.disabled = false;
+            btn.textContent = 'Submit Feedback';
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
