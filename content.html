@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit site text and photos | Who's Driving Your Bus?</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="er-admin-body">
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Who's Driving <span>Your Bus?</span></a>
+      <nav class="nav-desktop" aria-label="Admin">
+        <a href="admin.html">Early Readers</a>
+        <a href="content.html" class="is-active">Edit text and photos</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation" hidden>
+    <ul>
+      <li><a href="admin.html">Early Readers</a></li>
+      <li><a href="content.html" class="is-active">Edit text and photos</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="section section--cream er-admin-section">
+      <div class="container">
+        <div id="content-login" class="er-card er-admin-login" hidden>
+          <h1>Edit text and photos</h1>
+          <p class="er-card-intro">Sign in with your admin account. This changes the words and pictures. It does not change the page layout.</p>
+          <form id="content-login-form" novalidate>
+            <div class="form-group">
+              <label for="admin-email">Email</label>
+              <input type="email" id="admin-email" required autocomplete="username">
+            </div>
+            <div class="form-group">
+              <label for="admin-password">Password</label>
+              <input type="password" id="admin-password" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn--primary" id="content-login-btn">Sign In</button>
+            <p id="content-login-status" class="er-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div id="content-denied" class="er-card" hidden>
+          <h1>Access denied</h1>
+          <p>This account is not authorized to edit the site.</p>
+          <button type="button" class="btn btn--secondary" id="denied-logout">Sign out</button>
+        </div>
+
+        <div id="content-editor" hidden>
+          <div class="er-admin-header">
+            <div>
+              <p class="eyebrow">Private</p>
+              <h1>Text and photos</h1>
+              <p class="er-admin-workflow">Change the words or replace a photo, then save. The layout stays the same.</p>
+            </div>
+            <div class="btn-group">
+              <a href="admin.html" class="btn btn--secondary">Early Readers</a>
+              <button type="button" class="btn btn--secondary" id="content-logout">Sign out</button>
+            </div>
+          </div>
+          <p id="content-status" class="er-status" role="status" aria-live="polite"></p>
+          <form id="content-form">
+            <div id="content-fields"></div>
+            <button type="submit" class="btn btn--primary" id="content-save">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/early-reader.js"></script>
+  <script src="script.js"></script>
+  <script src="assets/js/content-admin.js"></script>
+</body>
+</html>

@@ -48,9 +48,9 @@
       <div class="container hero-grid">
         <div class="hero-content reveal">
           <p class="eyebrow">The Bus Framework</p>
-          <h1>Who's Driving Your Bus?</h1>
-          <p class="subheadline">A Practical Guide to Loving Yourself—For Real</p>
-          <p>Have you ever said something you immediately regretted? Repeated a pattern in a relationship you swore you were done with? Reached for your phone, or a glass of wine — not because you needed it, but because something felt unbearable and you needed it to stop? These are not failures. They are what happens when a frightened passenger grabs the wheel without you noticing.</p>
+          <h1 data-cms="home.hero.title" data-cms-label="Homepage title">Who's Driving Your Bus?</h1>
+          <p class="subheadline" data-cms="home.hero.subtitle" data-cms-label="Homepage subtitle">A Practical Guide to Loving Yourself—For Real</p>
+          <p data-cms="home.hero.body" data-cms-label="Homepage introduction">Have you ever said something you immediately regretted? Repeated a pattern in a relationship you swore you were done with? Reached for your phone, or a glass of wine — not because you needed it, but because something felt unbearable and you needed it to stop? These are not failures. They are what happens when a frightened passenger grabs the wheel without you noticing.</p>
           <div class="btn-group">
             <a href="framework.html" class="btn btn--primary">Explore the Framework</a>
             <a href="about.html" class="btn btn--secondary">Meet Judy</a>
@@ -58,7 +58,7 @@
         </div>
         <div class="hero-visual reveal reveal-delay-2">
           <div class="book-cover-wrap">
-            <img src="assets/images/book-cover.png" alt="Who's Driving Your Bus book cover">
+            <img data-cms="home.hero.image" data-cms-kind="image" data-cms-label="Homepage book cover" src="assets/images/book-cover.png" alt="Who's Driving Your Bus book cover">
           </div>
         </div>
       </div>
@@ -114,11 +114,11 @@
     <section class="section section--warm">
       <div class="container preview-block">
         <div class="preview-image preview-image--portrait reveal">
-          <img src="assets/images/knowing.png" alt="">
+          <img data-cms="home.knowing.image" data-cms-kind="image" data-cms-label="Knowing section photo" src="assets/images/knowing.png" alt="">
         </div>
         <div class="preview-content reveal reveal-delay-2">
           <p class="eyebrow">Why This Is Different</p>
-          <h2>Knowing isn't enough. And you already know that.</h2>
+          <h2 data-cms="home.knowing.title" data-cms-label="Knowing section heading">Knowing isn't enough. And you already know that.</h2>
           <p>People who reach for a self-help book are rarely lacking in self-awareness. They already know something is not working. They know they keep reacting the same way in relationships. They recognize the harsh inner voice that wakes them at 3am and understand, logically, that it is not helping. What they cannot figure out is why knowing all of this changes nothing.</p>
           <p>Most approaches to personal growth ask people to override their inner voices through willpower, positive thinking, or affirmations. But the passengers on our bus do not respond to force or fixing. They are not broken. They respond to understanding. What we resist, persists. The parts we ignore do not disappear. They wait — and then, in our most unguarded moments, they grab the wheel.</p>
           <p>When people see themselves react in ways that do not work — pull away from someone they love, act out in anger, medicate their pain with something, anything — they do not just feel frustrated. They feel ashamed. That shame becomes its own passenger, one of the loudest on the bus, and it makes genuine change almost impossible. This book addresses shame directly: not by dismissing it, but by helping readers understand where it came from, and why it no longer needs to be in charge.</p>
@@ -137,7 +137,7 @@
     <section class="section section--cream">
       <div class="container preview-block">
         <div class="preview-image preview-image--portrait reveal">
-          <img src="assets/images/chapter13.png" alt="Two people walking together">
+          <img data-cms="home.chapter.image" data-cms-kind="image" data-cms-label="When two buses meet photo" src="assets/images/chapter13.png" alt="Two people walking together">
         </div>
         <div class="preview-content reveal reveal-delay-2">
           <p class="eyebrow">From the Book</p>
@@ -165,7 +165,7 @@
           </div>
         </div>
         <div class="preview-image preview-image--portrait reveal reveal-delay-2">
-          <img src="assets/images/judy.png" alt="Judy Mahler Steinfeld">
+          <img data-cms="home.judy.image" data-cms-kind="image" data-cms-label="Homepage Judy photo" src="assets/images/judy.png" alt="Judy Mahler Steinfeld">
         </div>
       </div>
     </section>
@@ -181,7 +181,7 @@
           <p>The goal is not to silence those passengers or push them off the bus. It is to meet them, understand where they came from, and gently move them back to their seats. They can ride. They just cannot drive.</p>
         </div>
         <div class="preview-image reveal reveal-delay-2">
-          <img src="assets/images/true-self.png" alt="An open road toward the horizon">
+          <img data-cms="home.trueself.image" data-cms-kind="image" data-cms-label="True Self photo" src="assets/images/true-self.png" alt="An open road toward the horizon">
         </div>
       </div>
     </section>
@@ -199,7 +199,7 @@
           </div>
         </div>
         <div class="preview-image preview-image--portrait reveal reveal-delay-2">
-          <img src="assets/images/book-cover.png" alt="Who's Driving Your Bus book cover">
+          <img data-cms="home.book.image" data-cms-kind="image" data-cms-label="Book section cover" src="assets/images/book-cover.png" alt="Who's Driving Your Bus book cover">
         </div>
       </div>
     </section>
@@ -209,8 +209,8 @@
       <div class="container">
         <div class="section-header section-header--center reveal">
           <p class="eyebrow">Early Readers</p>
-          <h2>Request Early Reader Access</h2>
-          <p class="lead">Approved readers receive private access to the Introduction and first three chapters. Requests are reviewed individually — please allow 24 to 48 hours.</p>
+          <h2 data-cms="home.early.title" data-cms-label="Early Reader heading">Request Early Reader Access</h2>
+          <p class="lead" data-cms="home.early.body" data-cms-label="Early Reader description">Approved readers receive private access to the Introduction and first three chapters. Requests are reviewed individually — please allow 24 to 48 hours.</p>
           <div class="btn-group" style="justify-content: center;">
             <a href="join.html" class="btn btn--gold">Request Early Reader Access</a>
             <a href="feedback.html" class="btn btn--secondary">Share Feedback</a>
@@ -248,6 +248,9 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/site-content.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

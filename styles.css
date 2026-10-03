@@ -1086,6 +1086,24 @@ p:last-child {
   margin: 1rem 0;
 }
 
+.er-content-page {
+  margin: 2rem 0 1rem;
+}
+
+.er-content-preview {
+  width: 160px;
+  height: auto;
+  margin-bottom: 0.75rem;
+  border-radius: var(--radius);
+}
+
+.er-content-url,
+.er-content-file {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
 /* Footer
    ========================================================================== */
 

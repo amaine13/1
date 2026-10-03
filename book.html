@@ -47,12 +47,12 @@
       <div class="container preview-block">
         <div class="preview-content reveal">
           <p class="eyebrow">The Book</p>
-          <h1>Who's Driving Your Bus?</h1>
+          <h1 data-cms="book.title" data-cms-label="Book page title">Who's Driving Your Bus?</h1>
           <p class="subheadline">A Practical Guide to Loving Yourself—For Real</p>
           <p class="lead">Judy's first book is for the reader who already knows something isn't working — who recognizes the patterns, understands the inner critic isn't helping, and still can't make it stop. This book offers a different way in.</p>
         </div>
         <div class="preview-image preview-image--portrait reveal reveal-delay-2">
-          <img src="assets/images/book-cover.png" alt="Who's Driving Your Bus book cover">
+          <img data-cms="book.cover.image" data-cms-kind="image" data-cms-label="Book page cover" src="assets/images/book-cover.png" alt="Who's Driving Your Bus book cover">
         </div>
       </div>
     </section>
@@ -88,7 +88,7 @@
         <div class="content-block reveal">
           <h2>Get the Book</h2>
           <p>Who's Driving Your Bus? is Judy Mahler Steinfeld's first book. It is intended as the beginning of a broader body of work — future volumes will explore specific applications of the bus framework, including intimate relationships, aging, and loss.</p>
-          <p class="placeholder-note">Purchase links for retailers, independent bookstores, and digital editions will be added here.</p>
+          <p class="placeholder-note" data-cms="book.purchase.note" data-cms-label="Where to buy the book">Purchase links for retailers, independent bookstores, and digital editions will be added here.</p>
           <div class="btn-group">
             <a href="join.html" class="btn btn--gold">Request Early Reader Access</a>
             <a href="feedback.html" class="btn btn--secondary">Share Feedback</a>
@@ -141,6 +141,9 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/site-content.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
