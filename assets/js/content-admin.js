@@ -83,7 +83,7 @@
       html += '<label>' + escapeHtml(slot.label) + '</label>';
       if (slot.kind === 'image') {
         html += '<img class="er-content-preview" alt="" src="' + escapeHtml(value) + '">';
-        html += '<input type="url" class="er-content-url" value="' + escapeHtml(value) + '" placeholder="Image address">';
+        html += '<input type="text" inputmode="url" class="er-content-url" value="' + escapeHtml(value) + '" placeholder="Image address">';
         html += '<input type="file" class="er-content-file" accept="image/*">';
       } else {
         html += '<textarea rows="4">' + escapeHtml(value) + '</textarea>';
