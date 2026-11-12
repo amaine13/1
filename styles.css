@@ -1453,3 +1453,40 @@ body:has(.hero--editorial) .site-footer { background-color: #213a35; }
   .page-hero h1 { font-size:clamp(2.6rem,10vw,3.8rem); }
   .contact-form { padding:1.6rem; }
 }
+
+/* Perception illustrations: full images with room to examine each view. */
+.gestalt-illustrations {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+.gestalt-illustration { margin: 0; min-width: 0; }
+.gestalt-illustration__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #e7e1d4;
+  border-radius: 12px;
+  padding: 1rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+.gestalt-illustration__image:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 5px;
+}
+.gestalt-illustration__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.gestalt-illustration figcaption { padding-top: 1.25rem; }
+.gestalt-illustration h3 { margin-bottom: .75rem; }
+.gestalt-illustrations__hint { grid-column: 1 / -1; margin: 0; color: var(--text-muted); }
+@media (max-width: 700px) {
+  .gestalt-illustrations { grid-template-columns: 1fr; gap: 2rem; }
+  .gestalt-illustration__image { padding: .5rem; }
+}
