@@ -1547,3 +1547,11 @@ body:has(.page-hero) .reading-column { max-width:790px; background:#fffdf9; bord
 .inner-practice .content-block + .content-block { border-top:0; }
 @media(max-width:850px){ .inner-feature__grid { grid-template-columns:1fr; } .passengers-grid--editorial { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:560px){.passengers-grid--editorial { grid-template-columns:1fr; } body:has(.page-hero) .reading-column{padding:1.35rem;} }
+
+
+/* Reading experience for the current v14 introduction. */
+.introduction-text .introduction-subheading { font-size:clamp(1.85rem,3.3vw,2.85rem); margin:3rem 0 1.15rem; padding-top:1.6rem; border-top:1px solid #e3ddcf; }
+.introduction-figure { max-width:400px; margin:2.2rem auto; background:#fff; border-radius:16px; border:1px solid #e6e0d4; padding:clamp(1rem,3vw,2rem); }
+.introduction-figure img { width:100%; height:auto; image-rendering:auto; display:block; }
+.introduction-text { color:#303c36; }
+.introduction-text .reading-question { text-align:center; padding:1rem 0; letter-spacing:.025em; }
