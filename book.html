@@ -40,46 +40,65 @@
   </nav>
 
   <main>
-    <section class="page-hero">
-      <div class="container preview-block">
-        <div class="preview-content reveal">
-          <p class="eyebrow">The Book</p>
-          <h1 data-cms="book.title" data-cms-label="Book page title">Who's Driving Your Bus?</h1>
-          <p class="subheadline">What if the part of you that knows better isn’t the one making the decisions?</p>
-          <p class="lead" data-cms="book.overview" data-cms-label="Book overview">A book about noticing the different parts of ourselves, learning to see from another perspective, and meeting our inner passengers with compassion.</p>
-          <div class="btn-group"><a href="introduction.html" class="btn btn--primary">Read the Introduction</a></div>
+    <section class="book-landing-hero" aria-labelledby="book-main-title">
+      <div class="container book-landing-hero__grid">
+        <div class="book-landing-hero__copy reveal">
+          <p class="eyebrow">A book by Judy Mahler Steinfeld, LCSW</p>
+          <h1 id="book-main-title" data-cms="book.title" data-cms-label="Book page title">Who's Driving Your Bus?</h1>
+          <p class="book-landing-hero__hook">What if the part of you that knows better isn't the one making the decisions?</p>
+          <p class="book-landing-hero__body" data-cms="book.overview" data-cms-label="Book overview">Why do we keep repeating patterns we recognize, even when we want something different? Through personal stories, experiences from more than forty years in psychotherapy, and practical moments of reflection, Judy invites you to recognize the parts of yourself that take the wheel.</p>
+          <div class="btn-group book-landing-hero__actions">
+            <a href="introduction.html" class="btn btn--primary">Read the Introduction</a>
+            <a href="#chapter-guide-heading" class="btn btn--secondary">Explore 25 Chapters</a>
+          </div>
+          <p class="book-landing-hero__byline">Personal stories <span aria-hidden="true">·</span> Gestalt-inspired awareness <span aria-hidden="true">·</span> Bus Stop Practices</p>
         </div>
-        <div class="preview-image preview-image--portrait reveal reveal-delay-2">
-          <img data-cms="book.cover.image" data-cms-kind="image" data-cms-label="Book page cover" src="assets/images/book-cover-v11.jpg" alt="Who's Driving Your Bus book cover">
-        </div>
-      </div>
-    </section>
-    <section class="section section--warm">
-      <div class="container editorial-block">
-        <div class="content-block reveal">
-          <h2>Stories That Feel Familiar</h2>
-          <p data-cms="book.framework" data-cms-label="Passengers and True Self">Judy draws on her own life and decades of work with people to explore why we react as we do. You may recognize a familiar feeling, a relationship pattern, or a passenger you never thought to name.</p>
-        </div>
-        <div class="content-block reveal">
-          <h2>What You Will Explore</h2>
-          <p data-cms="book.progression" data-cms-label="Book progression">The chapters introduce different passengers, explore where they came from, and invite you to notice what changes when you view a situation from another seat.</p>
-        </div>
-        <div class="content-block reveal">
-          <h2>Bus Stop Practices</h2>
-          <p data-cms="book.practices" data-cms-label="Book Bus Stop Practices">At the end of each chapter, a Bus Stop Practice offers a chance to pause and try the ideas for yourself. Some ask you to sit with a feeling. Others invite a conversation with a passenger or a closer look at a familiar reaction.</p>
-        </div>
-        <div class="content-block reveal">
-          <h2>Get the Book</h2>
-          <p class="placeholder-note" data-cms="book.purchase.note" data-cms-label="Where to buy the book">For information about the book and its availability, please contact Judy.</p>
+        <div class="book-landing-hero__visual reveal reveal-delay-2">
+          <div class="book-landing-hero__cover">
+            <img data-cms="book.cover.image" data-cms-kind="image" data-cms-label="Book page cover" src="assets/images/book-cover-v11.jpg" alt="Who's Driving Your Bus book cover">
+          </div>
         </div>
       </div>
     </section>
-    <section class="section section--cream chapter-guide" aria-labelledby="chapter-guide-heading">
+    <section class="book-promise" aria-labelledby="book-promise-heading">
+      <div class="container">
+        <div class="book-promise__heading reveal">
+          <p class="eyebrow">What you'll find inside</p>
+          <h2 id="book-promise-heading">You may recognize yourself in these pages.</h2>
+          <p>Sometimes the part of us that speaks the loudest is the part that feels most afraid. Judy's stories offer a way to notice that voice without letting it tell the whole story.</p>
+        </div>
+        <div class="book-promise__grid">
+          <article class="book-promise__card reveal">
+            <span class="book-promise__index">01 / RECOGNIZE</span>
+            <h3>Meet the passengers.</h3>
+            <p data-cms="book.framework" data-cms-label="Passengers and True Self">The Critic. The Pleaser. The Fear Maker. Discover why familiar patterns show up, and why even difficult parts of ourselves may believe they're helping.</p>
+          </article>
+          <article class="book-promise__card reveal">
+            <span class="book-promise__index">02 / RECONSIDER</span>
+            <h3>See beyond the first story.</h3>
+            <p data-cms="book.progression" data-cms-label="Book progression">Explore Judy's Gestalt-informed approach to awareness. What changes when you recognize a second perspective alongside the one you've always known?</p>
+          </article>
+          <article class="book-promise__card reveal">
+            <span class="book-promise__index">03 / PRACTICE</span>
+            <h3>Take it into your own life.</h3>
+            <p data-cms="book.practices" data-cms-label="Book Bus Stop Practices">Each chapter closes with a Bus Stop Practice. These invitations help you pause, notice a reaction, and bring a little more curiosity to your experience.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="book-interlude" aria-label="A thought to carry with you">
+      <div class="container book-interlude__inner">
+        <p class="eyebrow">The question at the heart of the book</p>
+        <p class="book-interlude__quote">“What if what you're seeing is only one part of the picture?”</p>
+        <p class="book-interlude__caption">Twenty-five chapters of stories, reflection, and possibilities for seeing differently.</p>
+      </div>
+    </section>
+    <section class="section chapter-guide book-chapter-section" aria-labelledby="chapter-guide-heading">
       <div class="container">
         <div class="section-header section-header--center reveal">
-          <p class="eyebrow">Inside the Book</p>
-          <h2 id="chapter-guide-heading">There's More to Every Passenger's Story</h2>
-          <p class="lead">From Judy's childhood in the Bronx to the stories of people she's worked with over forty years, each chapter reveals a different part of the bus. Open a chapter below to discover the stories, questions, and experiences waiting inside.</p>
+          <p class="eyebrow">A closer look</p>
+          <h2 id="chapter-guide-heading">Inside the Book</h2>
+          <p class="lead">Start with Judy as a little girl in the Bronx. Continue through stories of fear, love, relationships, and the many voices we carry. Select a chapter to read a detailed preview from the manuscript.</p>
         </div>
         <div class="chapter-guide__groups">
           <div class="chapter-guide__group">
@@ -202,14 +221,16 @@
         <div class="btn-group chapter-guide__cta"><a href="introduction.html" class="btn btn--primary">Read the Introduction</a><a href="contact.html" class="btn btn--secondary">Ask Judy About the Book</a></div>
       </div>
     </section>
-    <section class="section section--cream">
-      <div class="container editorial-block reveal">
-        <p class="eyebrow">For Book Clubs and Reading Groups</p>
-        <h2>Explore the work together.</h2>
-        <p data-cms="book.groups" data-cms-label="Reading groups">Judy is available to join book clubs and reading groups for guided conversations built around the book's themes and practices.</p>
-        <div class="btn-group">
-          <a href="work-with-judy.html" class="btn btn--primary">Work With Judy</a>
-          <a href="introduction.html" class="btn btn--secondary">Read the Introduction</a>
+    <section class="book-last-section">
+      <div class="container book-last-section__grid">
+        <div>
+          <p class="eyebrow">Keep reading</p>
+          <h2>A question worth exploring together.</h2>
+          <p data-cms="book.groups" data-cms-label="Reading groups">Judy welcomes conversations with reading groups and book clubs about the book's stories, questions, and practices.</p>
+        </div>
+        <div class="book-last-section__action">
+          <p data-cms="book.purchase.note" data-cms-label="Where to buy the book">For information about the book and its availability, please contact Judy.</p>
+          <a href="contact.html" class="btn btn--primary">Contact Judy</a>
         </div>
       </div>
     </section>
