@@ -1681,3 +1681,9 @@ body:has(.page-hero) .reading-column { max-width:790px; background:#fffdf9; bord
 .book-gestalt-context__detail{border-left:1px solid #b8caba;padding-left:clamp(22px,3.5vw,52px)}
 .book-gestalt-context__detail p{font-size:1.03rem;line-height:1.8;color:#4d6153;margin-bottom:19px}
 @media(max-width:760px){.book-gestalt-context__grid{grid-template-columns:1fr;gap:22px}.book-gestalt-context__detail{border-left:0;border-top:1px solid #b8caba;padding-left:0;padding-top:22px}}
+
+/* Purchase/reservation information shown until the publisher provides a destination. */
+.book-last-section__action h3{font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1.15;margin:.15rem 0 1rem;color:#2c4836}
+.book-last-section__action .eyebrow{margin-bottom:.45rem;color:#56725c}
+.book-purchase-pending{display:inline-flex;flex-wrap:wrap;gap:.4rem;align-items:center;padding:.8rem 1.05rem;background:#eff2eb;border:1px solid #d7dfd4;border-radius:999px;color:#58705e;font-size:.82rem;font-weight:700;letter-spacing:.015em;line-height:1.4}
+.book-last-section__action .book-purchase-note{margin:1.15rem 0 .85rem;font-size:.94rem}
