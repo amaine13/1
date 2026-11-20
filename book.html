@@ -10,6 +10,15 @@
 
   <style>
     /* Book-page-only finishing styles. No shared stylesheet or homepage edits. */
+    /* The cover comes first in document order. Place it on the right only on desktop. */
+    @media(min-width:701px){
+      .book-landing-hero__grid > .book-landing-hero__copy{grid-column:1;grid-row:1}
+      .book-landing-hero__grid > .book-landing-hero__visual{grid-column:2;grid-row:1}
+    }
+    @media(max-width:700px){
+      .book-landing-hero__grid > .book-landing-hero__visual{grid-column:1;grid-row:1!important}
+      .book-landing-hero__grid > .book-landing-hero__copy{grid-column:1;grid-row:2!important}
+    }
     .book-landing-hero__hook{font-style:normal;font-size:clamp(1.55rem,2.5vw,2.25rem);line-height:1.26}
     .book-landing-hero__body{max-width:620px}
     .book-professionals{background:#fffdf8;padding:clamp(62px,6vw,88px) 0}
@@ -63,7 +72,11 @@
   <main>
     <section class="book-landing-hero" aria-labelledby="book-main-title">
       <div class="container book-landing-hero__grid">
-        <div class="book-landing-hero__copy reveal">
+        <div class="book-landing-hero__visual reveal reveal-delay-2">
+          <div class="book-landing-hero__cover">
+            <img data-cms="book.cover.image" data-cms-kind="image" data-cms-label="Book page cover" src="assets/images/book-cover-v11.jpg" alt="Who's Driving Your Bus book cover">
+          </div>
+        </div>        <div class="book-landing-hero__copy reveal">
           <p class="eyebrow">A book by Judy Mahler Steinfeld, LCSW</p>
           <h1 id="book-main-title" data-cms="book.title" data-cms-label="Book page title">Who's Driving Your Bus?</h1>
           <p class="book-landing-hero__hook">Classic Gestalt wisdom meets contemporary self-compassion, through a practical, experiential journey toward loving yourself for real.</p>
@@ -73,11 +86,6 @@
             <a href="#chapter-guide-heading" class="btn btn--secondary">Explore 25 Chapters</a>
           </div>
           <p class="book-landing-hero__byline">Personal stories <span aria-hidden="true">·</span> Gestalt foundations <span aria-hidden="true">·</span> Bus Stop Practices</p>
-        </div>
-        <div class="book-landing-hero__visual reveal reveal-delay-2">
-          <div class="book-landing-hero__cover">
-            <img data-cms="book.cover.image" data-cms-kind="image" data-cms-label="Book page cover" src="assets/images/book-cover-v11.jpg" alt="Who's Driving Your Bus book cover">
-          </div>
         </div>
       </div>
     </section>
