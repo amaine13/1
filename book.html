@@ -37,6 +37,85 @@
       .book-landing-hero__cover{width:min(72%,310px)}
     }
 
+
+    /* Editorial Book page preview, scoped entirely to this document. */
+    .book-landing-hero{background:linear-gradient(135deg,#f8f6f0 0%,#edf1e9 100%);padding-bottom:clamp(58px,6vw,86px)}
+    .book-landing-hero__grid{gap:clamp(35px,6vw,92px)}
+    .book-landing-hero__copy{max-width:565px}
+    .book-landing-hero__copy h1{font-size:clamp(3.5rem,5.8vw,6.3rem);margin-bottom:26px}
+    .book-landing-hero__hook{font-size:clamp(1.4rem,2.2vw,2rem);line-height:1.32}
+    .book-landing-hero__body{max-width:510px;font-size:1rem}
+    .book-story{background:#fffdf9;padding:clamp(68px,8vw,118px) 0}
+    .book-story__grid{display:flex;flex-direction:column;gap:31px;max-width:830px}
+    .book-story__excerpt{text-align:center;max-width:800px}
+    .book-story__excerpt h2{font-size:clamp(1.3rem,2vw,1.75rem);font-weight:400;max-width:none;margin-bottom:28px}
+    .book-story__excerpt blockquote{font-size:clamp(2.2rem,4vw,4rem);line-height:1.24;font-weight:400;border-left:0;padding:0;margin:0 auto 22px;max-width:790px}
+    .book-story__context{max-width:640px;margin:0 auto}
+    .book-story__context p{font-size:1.03rem;line-height:1.82}
+    .book-story__context .book-story__last{font-size:1.5rem}
+    .book-gestalt-context{background:#f7f7f1;padding:clamp(74px,8vw,113px) 0}
+    .book-gestalt-context__grid{display:block;max-width:810px}
+    .book-gestalt-context__intro h2{max-width:790px;font-size:clamp(2.8rem,4.6vw,4.6rem)}
+    .book-gestalt-context__emphasis{max-width:730px;margin:0 0 31px}
+    .book-gestalt-context__detail{padding-left:0;border-left:0;max-width:670px}
+    .book-gestalt-context__detail p{line-height:1.85}
+    .book-gestalt__pullquote{display:block;font-family:var(--font-serif);font-size:clamp(1.65rem,3vw,2.45rem);font-style:italic;font-weight:400;line-height:1.35;color:#3c6048;margin:36px 0}
+    .book-judy{background:#fffdf9;padding:clamp(74px,8vw,116px) 0}
+    .book-judy__grid{max-width:1040px;gap:clamp(34px,5vw,80px)}
+    .book-judy__photo{box-shadow:none;border:0;padding:0;background:transparent;border-radius:6px}
+    .book-judy__photo img{border-radius:6px}
+    .book-judy__copy{max-width:575px}
+    .book-judy__copy h2{font-size:clamp(2.5rem,4vw,3.8rem)}
+    .book-professionals{background:#f7f7f1;padding:clamp(72px,8vw,118px) 0}
+    .book-professionals__grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(44px,6vw,90px)}
+    .book-professionals__intro h2{font-size:clamp(2.6rem,4vw,4rem)}
+    .book-professionals__content{max-width:650px}
+    .book-professionals__example{border:0;border-radius:0;box-shadow:none;background:transparent;padding:12px 0 8px;margin:24px 0 21px}
+    .book-professionals__step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:14px;padding:19px 0;border-bottom:1px solid #d4dfd2}
+    .book-professionals__step:last-child{border-bottom:0}
+    .book-professionals__number{font-family:var(--font-serif);font-size:2rem;line-height:1.1;color:#789281}
+    .book-professionals__step h3{font-family:var(--font-serif);font-size:1.5rem;font-weight:500;color:#314f3c;margin:0 0 5px}
+    .book-professionals__example .book-professionals__step p{font-size:.97rem;margin:0;line-height:1.65;color:#4d6153}
+    .book-pause{background:#fffdf9;padding:clamp(76px,8vw,116px) 0}
+    .book-pause__grid{display:block;max-width:755px}
+    .book-pause__intro{max-width:640px;margin:0 auto 30px;text-align:center}
+    .book-pause__intro h2{font-style:italic;font-weight:400}
+    .book-pause__intro .book-pause__source{margin-top:8px}
+    .book-pause__exercise{background:#f8f6ee;border:1px solid #e6e5db;border-radius:3px;box-shadow:none;padding:clamp(32px,5vw,66px)}
+    .book-pause__exercise p{max-width:580px;margin:0 auto 20px;line-height:1.9}
+    .book-pause__exercise p:nth-child(2){font-style:italic;line-height:1.5;margin-bottom:23px}
+    .book-chapter-section{background:#f7f7f1;padding:clamp(72px,8vw,112px) 0}
+    .book-chapter-section .section-header{max-width:730px;margin-left:auto;margin-right:auto}
+    .book-last-section{background:#fffdf9;padding:clamp(70px,7vw,105px) 0}
+    .book-last-section__grid{grid-template-columns:1fr .82fr;gap:clamp(40px,6vw,82px)}
+    .book-last-section h2{font-style:italic;font-weight:400;font-size:clamp(2.6rem,4.4vw,4.1rem)}
+    .book-last-section__action{background:transparent;box-shadow:none;border:0;border-left:1px solid #d6e2d7;border-radius:0;padding:0 0 0 clamp(25px,3vw,48px)}
+    @media(max-width:800px){
+      .book-story__grid{gap:26px}
+      .book-professionals__grid{grid-template-columns:1fr;gap:26px}
+      .book-last-section__grid{grid-template-columns:1fr;gap:28px}
+      .book-last-section__action{border-left:0;border-top:1px solid #d6e2d7;padding:27px 0 0}
+    }
+    @media(max-width:700px){
+      .book-landing-hero{padding-bottom:48px}
+      .book-landing-hero__grid{gap:19px}
+      .book-landing-hero__copy h1{font-size:clamp(3rem,11vw,4.5rem)}
+      .book-landing-hero__hook{font-size:clamp(1.4rem,5.6vw,1.85rem)}
+      .book-story,.book-gestalt-context,.book-judy,.book-professionals,.book-pause,.book-chapter-section,.book-last-section{padding-top:55px;padding-bottom:56px}
+      .book-story__excerpt blockquote{font-size:clamp(2.05rem,7vw,2.7rem)}
+      .book-story__excerpt h2{font-size:1.3rem}
+      .book-story__context .book-story__last{font-size:1.35rem}
+      .book-gestalt-context__intro h2,.book-judy__copy h2,.book-professionals__intro h2{font-size:clamp(2.25rem,9vw,3rem)}
+      .book-gestalt__pullquote{font-size:1.7rem;margin:21px 0}
+      .book-judy__grid{gap:22px}
+      .book-judy__photo{max-width:270px;width:72%}
+      .book-professionals__example{margin:13px 0}
+      .book-professionals__step{padding:13px 0}
+      .book-pause__intro{margin-bottom:22px}
+      .book-pause__exercise{padding:25px 21px}
+      .book-last-section h2{font-size:2.7rem}
+    }
+
     /* Book-only Bus Stop Practice. Existing site typography and palette. */
     .book-pause{background:#e9f0e8;padding:clamp(58px,6vw,88px) 0}
     .book-pause__grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,76px);align-items:center}
@@ -127,7 +206,7 @@
         </div>
         <div class="book-gestalt-context__detail reveal">
           <p>Gestalt therapy is rooted in awareness, direct experience, and seeing the whole person. Judy brings those principles into everyday life through what she calls the Gestalt Switch: the moment we recognize another way of seeing something familiar.</p>
-          <p>We don’t necessarily need to change our circumstances to change our experience of them. Sometimes, noticing which passenger is interpreting a situation allows us to see more of the whole picture. We don’t have to spend our lives trying to fix ourselves. The book invites us to listen to these different parts with compassion and bring them into greater harmony, rather than trying to get rid of them.</p>
+          <p>We don’t necessarily need to change our circumstances to change our experience of them. Sometimes, noticing which passenger is interpreting a situation allows us to see more of the whole picture. <span class="book-gestalt__pullquote">We don’t have to spend our lives trying to fix ourselves.</span> The book invites us to listen to these different parts with compassion and bring them into greater harmony, rather than trying to get rid of them.</p>
           <a class="book-text-link" href="framework.html">Learn about Judy's approach <span aria-hidden="true">→</span></a>
         </div>
       </div>
@@ -163,7 +242,9 @@
           <p><em>Who's Driving Your Bus?</em> offers a bridge between psychological insight and lived experience. Judy’s bus metaphor makes complex feelings and familiar patterns easier to recognize and discuss. Helping professionals can use its stories and exercises alongside individual therapy, group work, classes, or workshops.</p>
           <div class="book-professionals__example">
             <p class="book-professionals__example-label">One way to use the book</p>
-            <p>A therapist might ask a client to read a relevant chapter before their next session. Together, they can talk about the passenger the client recognized, what it might be trying to protect, and what becomes possible when they see the situation from another seat. A Bus Stop Practice can offer a starting point for reflection between sessions.</p>
+            <div class="book-professionals__step"><span class="book-professionals__number">01</span><div><h3>Read</h3><p>A therapist might ask a client to read a relevant chapter before their next session.</p></div></div>
+            <div class="book-professionals__step"><span class="book-professionals__number">02</span><div><h3>Discuss</h3><p>Together, they can talk about the passenger the client recognized, what it might be trying to protect, and what becomes possible when they see the situation from another seat.</p></div></div>
+            <div class="book-professionals__step"><span class="book-professionals__number">03</span><div><h3>Reflect</h3><p>A Bus Stop Practice can offer a starting point for reflection between sessions.</p></div></div>
           </div>
           <p>Readers familiar with contemporary parts-based approaches may recognize a shared interest in our inner parts. Judy’s work has its own Gestalt foundations: present-moment awareness, changing perception, and experiencing the whole person. The book offers a practical companion to professional work, not a replacement for clinical judgment.</p>
         </div>
